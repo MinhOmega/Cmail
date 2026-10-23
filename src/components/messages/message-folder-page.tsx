@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { MouseEvent } from "react";
-import { Archive, ChevronLeft, ChevronRight, ListFilter, Mail, MailOpen, Trash2 } from "lucide-react";
+import { Archive, ChevronLeft, ChevronRight, ListFilter, Mail, MailOpen, Trash2, UsersRound } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -302,6 +302,7 @@ export function MessageFolderPage({
 	const { t } = useLanguage();
 	const title = config.titleKey ? t(config.titleKey) : config.title;
 	const { selectedMailbox, isLoading: mailboxesLoading } = useSelectedMailbox();
+	const [allMailboxes, setAllMailboxes] = useState(false);
 	const { query } = useMailSearch();
 	const isMobile = useIsMobile();
 	const [offset, setOffset] = useState(0);
@@ -314,14 +315,14 @@ export function MessageFolderPage({
 	const [unreadOnly, setUnreadOnly] = useState(false);
 	const [conversationView] = useConversationView();
 	const grouped = conversationView && config.folder !== "drafts";
-	const { messages, isLoading, total, limit, updateMessages } = useMessages(config.folder, selectedMailbox?.id, {
+	const { messages, isLoading, total, limit, updateMessages } = useMessages(config.folder, allMailboxes ? null : selectedMailbox?.id, {
 		query,
 		limit: pageSize,
 		offset,
 		read: unreadOnly ? "unread" : "all",
 		group: grouped ? "thread" : undefined,
 	}, !mailboxesLoading, config.folderId);
-	const { counts } = useMessageCounts(selectedMailbox?.id, !mailboxesLoading);
+	const { counts } = useMessageCounts(allMailboxes ? null : selectedMailbox?.id, !mailboxesLoading);
 	usePageLoading(mailboxesLoading || isLoading);
 	const headerIcons = config.headerIcons ?? [];
 	const hasActiveFilters = !!query.trim();
@@ -330,8 +331,8 @@ export function MessageFolderPage({
 		: counts.folders[config.folder];
 	const titleTotal = folderCount?.total ?? total;
 	const titleUnread = folderCount?.unread ?? 0;
-	const mailboxAddress = getMailboxAddress(selectedMailbox);
-	const currentAccountName = selectedMailbox?.displayName ?? selectedMailbox?.localPart;
+	const mailboxAddress = allMailboxes ? t("folders.allMailboxes") : getMailboxAddress(selectedMailbox);
+	const currentAccountName = allMailboxes ? t("folders.allMailboxes") : (selectedMailbox?.displayName ?? selectedMailbox?.localPart);
 	const pageRange = getPageRange(offset, messages.length, total);
 	const selectedMessages = selection?.selectedMessages ?? internalSelectedMessages;
 	const setSelectedMessages =
@@ -554,7 +555,20 @@ export function MessageFolderPage({
 								</Button>
 							</Tooltip>
 						)}
-						{permanentDeleteFolder && (
+						<Tooltip label={t("folders.allMailboxes")}>
+				<Button
+					type="button"
+					variant="ghost"
+					size="sm"
+					aria-pressed={allMailboxes}
+					onClick={() => setAllMailboxes((value) => !value)}
+					className={`gap-1.5 text-xs font-medium ${allMailboxes ? "text-blue-700" : "text-neutral-600 hover:text-neutral-900"}`}
+				>
+					<UsersRound className="h-4 w-4" />
+					{!compact && <span className="max-md:hidden">{t("folders.allMailboxes")}</span>}
+				</Button>
+			</Tooltip>
+			{permanentDeleteFolder && (
 							<Tooltip label={getEmptyFolderLabel(permanentDeleteFolder, t)}>
 								<Button
 									type="button"
