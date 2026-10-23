@@ -61,7 +61,7 @@ async function fixture(t, { rules = [], failAddress, slowAddress } = {}) {
 	`);
 	database.db.prepare("INSERT INTO api_keys (id, user_id, name, prefix, key_hash, scopes, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)")
 		.run("key", "admin", "Test", key.prefix, key.hash, '["accounts"]', 1);
-	const env = { DB: database, CF_TOKEN: "test-only", CMAIL_RUNTIME: "node" };
+	const env = { DB: database, CF_TOKEN: "test-only", CMAIL_RUNTIME: "node", ENABLE_FORWARDING: "true", ENABLE_BRANDING: "true", ENABLE_MULTIUSER: "true", ENABLE_SHARED_MAILBOXES: "true" };
 	globalThis.__cmailNodeEnv = env;
 	t.after(() => { delete globalThis.__cmailNodeEnv; });
 	const session = await createSession(env, "admin");
@@ -232,28 +232,25 @@ for (const enabled of [true, false]) {
 	});
 }
 
-test("account creation still enforces admin authorization and the Team license", async (t) => {
+test("account creation enforces admin authorization; the fork flag replaces the license gate", async (t) => {
 	const f = await fixture(t);
 	assert.equal((await f.post("api", {}, "invalid-test-key")).status, 401);
 	assert.equal((await f.post("dashboard", {}, "invalid-test-session")).status, 403);
+	// Fork: entitlements come from ENABLE_MULTIUSER (fixture env), so an
+	// inactive commercial license no longer blocks account creation.
 	f.database.db.exec("UPDATE license_settings SET state = 'inactive'");
-	assert.equal((await f.post("api")).status, 403);
-	assert.equal((await f.post("dashboard")).status, 403);
-	assert.equal(f.calls.length, 0);
+	assert.equal((await f.post("api")).status, 201);
+	assert.equal((await f.post("dashboard", { username: "flagdash" })).status, 201);
 });
 
-test("a Pro license creates accounts only while seats remain; Team and unlimited Pro have no limit", async (t) => {
+test("the fork has no seat limit; commercial license state is ignored", async (t) => {
 	const f = await fixture(t);
-	const users = () => f.database.db.prepare("SELECT count(*) AS count FROM users WHERE disabled = 0").get().count;
-	f.database.db.exec(`UPDATE license_settings SET plan = 'pro', seat_limit = ${users()}`);
-	assert.equal((await f.post("api")).status, 403, "no seat left");
-	f.database.db.exec(`UPDATE license_settings SET seat_limit = ${users() + 1}`);
-	assert.equal((await f.post("api", { username: "seat-one" })).status, 201);
-	assert.equal((await f.post("api", { username: "seat-two" })).status, 403, "seat just used");
-	f.database.db.exec("UPDATE license_settings SET seat_limit = NULL");
-	assert.equal((await f.post("api", { username: "seat-three" })).status, 201);
-	f.database.db.exec("UPDATE license_settings SET plan = 'team', seat_limit = 1");
-	assert.equal((await f.post("api", { username: "seat-four" })).status, 201);
+	// Fork: getLicenseEntitlements reports accountSeatLimit = null regardless of
+	// license_settings, so restrictive license rows cannot block creation.
+	f.database.db.exec(`UPDATE license_settings SET plan = 'pro', state = 'active', seat_limit = 0`);
+	assert.equal((await f.post("api", { username: "seat-one" })).status, 201, "fork ignores seat limits");
+	f.database.db.exec("UPDATE license_settings SET plan = 'team', state = 'inactive', seat_limit = NULL");
+	assert.equal((await f.post("api", { username: "seat-two" })).status, 201);
 });
 
 for (const separateDomains of [false, true]) {
