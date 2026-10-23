@@ -11,7 +11,7 @@ after(() => { rmSync(temporary, { recursive: true, force: true }); delete global
 const mocks = {
 	"@/lib/cloudflare": "export function getEnv(){return globalThis.mcpEnv}",
 	"@/lib/mcp/auth": "export async function authenticateMcpRequest(){return globalThis.mcpPrincipal}",
-	"@/lib/mcp/server": "export function createMailflareMcpHandler(env, principal, origin, authorization){ globalThis.mcpCalls.push({ env, principal, origin, authorization }); return { fetch: () => new Response('ok'), close: async () => {} }; }",
+	"@/lib/mcp/server": "export function createCmailMcpHandler(env, principal, origin, authorization){ globalThis.mcpCalls.push({ env, principal, origin, authorization }); return { fetch: () => new Response('ok'), close: async () => {} }; }",
 	"@/lib/agent/rate-limit": "export async function allowAgentRequest(){return globalThis.mcpAllow}",
 };
 await build({ entryPoints: [join(project, "src/app/mcp/route.ts")], outfile: join(temporary, "route.mjs"), bundle: true, platform: "node", format: "esm", packages: "external", alias: { "@": join(project, "src") }, logLevel: "silent", plugins: [{ name: "route-fixtures", setup(builder) {
