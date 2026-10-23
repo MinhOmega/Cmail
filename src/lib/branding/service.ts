@@ -11,7 +11,7 @@ export const BRANDING_ICON_KEY = "branding/app-icon";
 export async function getBranding(env: CloudflareEnv): Promise<Branding> {
 	const entitlements = await getLicenseEntitlements(env);
 	if (!entitlements.canCustomizeBranding) {
-		return { appName: DEFAULT_APP_NAME, hasCustomIcon: false, canCustomizeBranding: false };
+		return { appName: DEFAULT_APP_NAME, hasCustomIcon: false, accentColor: null, canCustomizeBranding: false };
 	}
 
 	try {
@@ -26,13 +26,13 @@ export async function getBranding(env: CloudflareEnv): Promise<Branding> {
 			canCustomizeBranding: true,
 		};
 	} catch {
-		return { appName: DEFAULT_APP_NAME, hasCustomIcon: false, canCustomizeBranding: true };
+		return { appName: DEFAULT_APP_NAME, hasCustomIcon: false, accentColor: null, canCustomizeBranding: true };
 	}
 }
 
 export async function updateBranding(
 	env: CloudflareEnv,
-	input: { appName: string; icon?: File | null },
+	input: { appName: string; icon?: File | null; accentColor?: string | null },
 ): Promise<Branding> {
 	if (!(await getLicenseEntitlements(env)).canCustomizeBranding) {
 		throw new Error("A Pro or Team license is required to customize branding");

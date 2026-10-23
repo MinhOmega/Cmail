@@ -760,6 +760,7 @@ export const appSettings = sqliteTable("app_settings", {
 	updatedAt: integer("updated_at", { mode: "timestamp" })
 		.notNull()
 		.$defaultFn(() => new Date()),
+	accentColor: text("accent_color"),
 });
 
 export const licenseSettings = sqliteTable("license_settings", {

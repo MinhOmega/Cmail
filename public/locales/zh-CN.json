@@ -1986,5 +1986,7 @@
 	"compose.cancelSend": "Cancel",
 	"compose.sendCancelled": "Sending cancelled. Message moved to Drafts.",
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
-	"folders.allMailboxes": "All mailboxes"
+	"folders.allMailboxes": "All mailboxes",
+	"branding.accentColor": "Accent color",
+	"branding.accentReset": "Reset"
 }

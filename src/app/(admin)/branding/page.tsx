@@ -38,8 +38,6 @@ export default function BrandingPage() {
 						<CardDescription>{t("branding.originalNote")}</CardDescription>
 					</CardHeader>
 					<CardContent className="flex flex-col gap-3 pt-6 sm:flex-row">
-						<Button asChild>
-						</Button>
 					</CardContent>
 				</Card>
 			</div>
@@ -57,7 +55,7 @@ export default function BrandingPage() {
 		setSaving(true);
 		setStatus(null);
 		try {
-			await saveBranding(appName.trim(), icon);
+			await saveBranding(appName.trim(), icon, accentColor);
 			await branding.refreshBranding();
 			setIcon(null);
 			setStatus(t("branding.updated"));
@@ -84,6 +82,13 @@ export default function BrandingPage() {
 						<div className="space-y-2">
 							<Label htmlFor="appName">{t("branding.appName")}</Label>
 							<Input id="appName" value={appName} maxLength={60} onChange={(event) => setAppName(event.target.value)} required />
+						</div>
+						<div className="space-y-2">
+							<Label htmlFor="brandingAccent">{t("branding.accentColor")}</Label>
+							<div className="flex items-center gap-3">
+								<input id="brandingAccent" type="color" value={accentColor} onChange={(event) => setAccentColor(event.target.value)} className="h-10 w-16 cursor-pointer rounded-md border border-neutral-200 bg-white p-1" />
+								<Button type="button" variant="ghost" size="sm" onClick={() => setAccentColor("#0b57d0")}>{t("branding.accentReset")}</Button>
+							</div>
 						</div>
 						<div className="space-y-2">
 							<Label>{t("branding.appIcon")}</Label>

@@ -23,6 +23,16 @@ export function BrandingProvider({ children, initialBranding }: { children: Reac
 	useEffect(() => {
 		void refreshBranding();
 	}, []);
+	useEffect(() => {
+		const root = document.documentElement;
+		if (branding.accentColor) {
+			root.style.setProperty("--primary", branding.accentColor);
+			root.style.setProperty("--primary-foreground", "#ffffff");
+		} else {
+			root.style.removeProperty("--primary");
+			root.style.removeProperty("--primary-foreground");
+		}
+	}, [branding.accentColor]);
 
 	return (
 		<BrandingContext.Provider value={{
