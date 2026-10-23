@@ -1,0 +1,39 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "cmail-annam",
+	"routes": [{ "pattern": "mail.annamlabs.com", "custom_domain": true }],
+	"main": "./worker.ts",
+	"compatibility_date": "2026-05-20",
+	"keep_vars": true,
+	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+	"vars": { "WORKER_NAME": "cmail-annam" },
+	"assets": { "binding": "ASSETS", "not_found_handling": "none" },
+	"images": { "binding": "IMAGES" },
+	"services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "cmail-annam" }],
+	"durable_objects": { "bindings": [{ "name": "REALTIME", "class_name": "RealtimeHub" }] },
+	"migrations": [{ "tag": "v1", "new_sqlite_classes": ["RealtimeHub"] }],
+	"triggers": { "crons": ["0 2 * * *", "*/5 * * * *"] },
+	"ratelimits": [
+		{ "name": "LOGIN_RATE_LIMIT", "namespace_id": "1001", "simple": { "limit": 20, "period": 60 } },
+		{ "name": "DEVICE_LOGIN_RATE_LIMIT", "namespace_id": "1003", "simple": { "limit": 10, "period": 60 } },
+		{ "name": "AGENT_RATE_LIMIT", "namespace_id": "1002", "simple": { "limit": 120, "period": 60 } }
+	],
+	"observability": { "enabled": true },
+	"upload_source_maps": true,
+	"send_email": [{ "name": "EMAIL", "remote": false }],
+	"ai": { "binding": "AI", "remote": true },
+	"d1_databases": [{ "binding": "DB", "database_name": "cmail-annam", "database_id": "81d91341-336a-4b6e-bd46-6e5a3f66a9a1", "migrations_dir": "drizzle/migrations" }],
+	"r2_buckets": [{ "binding": "BUCKET", "bucket_name": "cmail-annam-raw" }],
+	"queues": {
+		"producers": [
+			{ "binding": "INBOUND_QUEUE", "queue": "cmail-annam-inbound" },
+			{ "binding": "OUTBOUND_QUEUE", "queue": "cmail-annam-outbound" },
+			{ "binding": "AGENT_QUEUE", "queue": "cmail-annam-agent" }
+		],
+		"consumers": [
+			{ "queue": "cmail-annam-inbound", "max_batch_size": 5, "max_retries": 3 },
+			{ "queue": "cmail-annam-outbound", "max_batch_size": 5, "max_retries": 3 },
+			{ "queue": "cmail-annam-agent", "max_batch_size": 1, "max_retries": 3 }
+		]
+	}
+}
