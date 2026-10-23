@@ -904,7 +904,7 @@
 	"admin.section.domains": "Add Cloudflare domains and inspect DNS state.",
 	"admin.section.branding": "Customize the app name, icon, and favicon.",
 	"admin.section.licenses": "Compare Pro and Team one-time licenses.",
-	"admin.section.accounts": "Add and manage user accounts with a Pro or Team license.",
+	"admin.section.accounts": "Add and manage user accounts.",
 	"admin.section.apiKeys": "Manage API access to domains, accounts, and mailboxes.",
 	"admin.section.apiKeysTitle": "Admin API keys",
 	"admin.page.aiUsage": "AI usage",
