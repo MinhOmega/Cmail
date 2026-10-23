@@ -136,5 +136,15 @@
 				"max_retries": 3
 			}
 		]
-	}
+	},
+	"routes": [
+		{
+			"pattern": "mail.minhvo.site",
+			"custom_domain": true
+		},
+		{
+			"pattern": "mail.annamlabs.com",
+			"custom_domain": true
+		}
+	]
 }

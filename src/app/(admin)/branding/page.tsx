@@ -39,7 +39,6 @@ export default function BrandingPage() {
 					</CardHeader>
 					<CardContent className="flex flex-col gap-3 pt-6 sm:flex-row">
 						<Button asChild>
-							<Link href="/licenses">{t("license.view")}</Link>
 						</Button>
 					</CardContent>
 				</Card>
