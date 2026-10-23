@@ -26,15 +26,15 @@ test("shouldBindEmailCatchAllToWorker inverts isNodeRuntime (issue #42)", () => 
 	const runtime = read("src/lib/runtime.ts");
 	assert.match(
 		runtime,
-		/MAILFLARE_RUNTIME === "node"/,
-		"isNodeRuntime must keep detecting MAILFLARE_RUNTIME=node",
+		/CMAIL_RUNTIME === "node"/,
+		"isNodeRuntime must keep detecting CMAIL_RUNTIME=node",
 	);
 
-	const isNodeRuntime = (env) => (env ?? undefined)?.MAILFLARE_RUNTIME === "node";
+	const isNodeRuntime = (env) => (env ?? undefined)?.CMAIL_RUNTIME === "node";
 	const shouldBindEmailCatchAllToWorker = (env) => !isNodeRuntime(env);
 
-	assert.equal(shouldBindEmailCatchAllToWorker({ MAILFLARE_RUNTIME: "node" }), false);
-	assert.equal(shouldBindEmailCatchAllToWorker({ MAILFLARE_RUNTIME: "cloudflare" }), true);
+	assert.equal(shouldBindEmailCatchAllToWorker({ CMAIL_RUNTIME: "node" }), false);
+	assert.equal(shouldBindEmailCatchAllToWorker({ CMAIL_RUNTIME: "cloudflare" }), true);
 	assert.equal(shouldBindEmailCatchAllToWorker({}), true);
 	assert.equal(shouldBindEmailCatchAllToWorker(undefined), true);
 });

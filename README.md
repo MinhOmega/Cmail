@@ -1,8 +1,8 @@
-<img src="/public/icon-96.png" alt="Mailflare" width="72" />
+<img src="/public/icon-96.png" alt="Cmail" width="72" />
 
-# Mailflare
+# Cmail
 
-Mailflare is a self-hosted email inbox for custom domains, built on Cloudflare. Supports **Resend**, or **AWS SES**
+Cmail is a self-hosted email inbox for custom domains, built on Cloudflare. Supports **Resend**, or **AWS SES**
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hieunc229/mailflare)
 
@@ -16,10 +16,10 @@ Mailflare is a self-hosted email inbox for custom domains, built on Cloudflare. 
 <a target="_blank" href="https://sequenzy.com/?ref=hieunc229/mailflare">
   <img height="80" src="/sponsors/sequenzy.png" alt="Sequenzy">
 </a>  <a target="_blank" href="https://drivemug.com/?ref=hieunc229/mailflare">
-  <img height="80" src="https://mailflare.co/sponsors/drivemug.png" alt="Drivemug">
+  <img height="80" src="https://cmail.co/sponsors/drivemug.png" alt="Drivemug">
 </a>
 
-Want to support the mailflare? <a target="_blank" href="https://store.paymug.co/buy/mailflare-sponsor">Start sponsoring</a>
+Want to support the cmail? <a target="_blank" href="https://store.paymug.co/buy/cmail-sponsor">Start sponsoring</a>
 
 ## What you can do
 
@@ -39,13 +39,13 @@ Want to support the mailflare? <a target="_blank" href="https://store.paymug.co/
 
 ## How it works
 
-Mailflare runs in your Cloudflare account. By default, Cloudflare Email Routing delivers incoming mail to the app, and Cloudflare's email service sends outgoing mail. Each domain can also receive or send through Resend or Amazon SES. Cloudflare still manages the DNS.
+Cmail runs in your Cloudflare account. By default, Cloudflare Email Routing delivers incoming mail to the app, and Cloudflare's email service sends outgoing mail. Each domain can also receive or send through Resend or Amazon SES. Cloudflare still manages the DNS.
 
 Your mail stays in your own D1 database, and attachments stay in your own R2, Backblaze B2 or AWS S3 bucket, whichever provider you use. See [Sending and receiving providers](docs/providers.md).
 
 ## Cost
 
-**You can set up Mailflare, receive mail, and send mail for free.** Receiving with Cloudflare Email Routing is free. For sending, use the free tier of Resend or Amazon SES. Cloudflare's own email sending needs a paid Worker plan.
+**You can set up Cmail, receive mail, and send mail for free.** Receiving with Cloudflare Email Routing is free. For sending, use the free tier of Resend or Amazon SES. Cloudflare's own email sending needs a paid Worker plan.
 
 | Send with | Free tier | After that |
 | --- | --- | --- |
@@ -65,9 +65,9 @@ You choose the provider per domain and can switch anytime (see [Sending and rece
 
 ## Deploy
 
-1. **Deploy the app.** Click **Deploy to Cloudflare**. Keep the app name `mailflare`. Other Worker names will break the app.
+1. **Deploy the app.** Click **Deploy to Cloudflare**. Keep the app name `cmail`. Other Worker names will break the app.
 2. **Finish setup.** Open the deployed app and follow `/setup` to check the install and create your admin account.
-3. **Connect a domain.** Add a domain from the same Cloudflare account and choose which service receives its mail. Mailflare sets up Email Routing, or guides you through Resend or Amazon SES. Then create your first mailbox. Add Resend or AWS credentials on the domain page when you need them.
+3. **Connect a domain.** Add a domain from the same Cloudflare account and choose which service receives its mail. Cmail sets up Email Routing, or guides you through Resend or Amazon SES. Then create your first mailbox. Add Resend or AWS credentials on the domain page when you need them.
 
 ⚠️ **`CF_TOKEN` is required during deployment.** Create a scoped [Cloudflare API token with these permissions](https://github.com/hieunc229/mailflare/issues/24#issuecomment-5523686105) for the domains you want to connect:
 
@@ -79,19 +79,19 @@ You choose the provider per domain and can switch anytime (see [Sending and rece
 Paste the prompt below into an agent with terminal access. Give it your Cloudflare account ID and **two separate scoped API tokens** through the agent's secret input. Never put them in a public chat, repository, or committed file.
 
 - **Deployment token** (Wrangler uses it as `CLOUDFLARE_API_TOKEN`): scope it to the target account with **Workers Scripts Edit** (or **Workers Admin** if you see Cloudflare's newer roles), **D1 Edit**, **Workers R2 Storage Edit**, **Queues Edit**, and **Account Settings Read**. Add **Workers Routes Edit** for the target zone only if the agent should attach a custom domain or route. See Cloudflare's [token permissions](https://developers.cloudflare.com/fundamentals/api/reference/permissions/) and [Workers roles](https://developers.cloudflare.com/workers/authorization/workers/).
-- **Runtime token** (stored as the Worker secret `CF_TOKEN`): use the domain permissions above. Add **Email Sending Edit** to send mail. It must cover the zones you will connect in Mailflare.
+- **Runtime token** (stored as the Worker secret `CF_TOKEN`): use the domain permissions above. Add **Email Sending Edit** to send mail. It must cover the zones you will connect in Cmail.
 
 ```text
-Install Mailflare from https://github.com/hieunc229/mailflare in my Cloudflare account.
+Install Cmail from https://github.com/hieunc229/mailflare in my Cloudflare account.
 Ask me for my Cloudflare account ID, a scoped deployment API token, and a separate
 runtime CF_TOKEN through a secret input. Never print, commit, or place either token
 in a command argument or a tracked file. Use the deployment token only for Wrangler
 authentication (CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID).
 
 Read README.md, docs/deployment.md, and wrangler.jsonc first. Keep the Worker name
-exactly mailflare. In the selected account, create or reuse the D1 database
-mailflare, R2 bucket mailflare-raw, and Queues mailflare-inbound,
-mailflare-outbound, and mailflare-agent. Set the D1 database_id in the local
+exactly cmail. In the selected account, create or reuse the D1 database
+cmail, R2 bucket cmail-raw, and Queues cmail-inbound,
+cmail-outbound, and cmail-agent. Set the D1 database_id in the local
 Wrangler config without committing that account-specific ID. Install dependencies,
 run npm run deploy, and set the runtime CF_TOKEN as a Worker secret. Do not run
 remote D1 migrations manually; the /setup flow initializes the database.
@@ -104,7 +104,7 @@ See the [deployment guide](docs/deployment.md) for permissions, manual deploymen
 
 ### Self-host with Docker
 
-Mailflare also runs as one container on any server. It uses SQLite and local files instead of D1 and R2 (Backblaze B2 can replace the local files).
+Cmail also runs as one container on any server. It uses SQLite and local files instead of D1 and R2 (Backblaze B2 can replace the local files).
 
 - **Inbound mail**: a built-in SMTP listener, or a small Cloudflare relay Worker if you want to keep MX on Cloudflare.
 - **Outbound mail**: any SMTP relay, Cloudflare Email Sending, Resend, or Amazon SES.

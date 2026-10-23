@@ -8,7 +8,7 @@ export type RemoteContentPolicy = {
 	senderAllowed?: boolean;
 };
 
-export const REMOTE_CONTENT_CHANGE_EVENT = "mailflare:remote-content-changed";
+export const REMOTE_CONTENT_CHANGE_EVENT = "cmail:remote-content-changed";
 
 const ENDPOINT = "/api/settings/remote-content";
 

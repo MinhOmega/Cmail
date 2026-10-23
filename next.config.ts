@@ -2,10 +2,10 @@ import type { NextConfig } from "next";
 import { getSecurityHeaders } from "./src/lib/security/headers";
 
 const nextConfig: NextConfig = {
-	distDir: process.env.MAILFLARE_RUNTIME === "node" ? ".next-node" : undefined,
+	distDir: process.env.CMAIL_RUNTIME === "node" ? ".next-node" : undefined,
 	turbopack: {
 		root: import.meta.dirname,
-		resolveAlias: process.env.MAILFLARE_RUNTIME === "node" ? {
+		resolveAlias: process.env.CMAIL_RUNTIME === "node" ? {
 			"cloudflare:workers": "./server/runtime/cloudflare-workers.ts",
 		} : {},
 	},

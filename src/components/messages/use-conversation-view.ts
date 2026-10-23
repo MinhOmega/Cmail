@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
-const STORAGE_KEY = "mailflare-conversation-view";
-const CHANGE_EVENT = "mailflare:conversation-view-changed";
+const STORAGE_KEY = "cmail-conversation-view";
+const CHANGE_EVENT = "cmail:conversation-view-changed";
 
 function readStored(): boolean {
 	try {

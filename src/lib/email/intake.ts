@@ -1,5 +1,5 @@
 import { newId } from "@/lib/ids";
-import { getAccountForwardingDestination, MAILFLARE_FORWARDED_HEADER } from "@/lib/email/account-forwarding";
+import { getAccountForwardingDestination, CMAIL_FORWARDED_HEADER } from "@/lib/email/account-forwarding";
 import { resolveIncomingMail } from "@/lib/email/incoming";
 import type { InboundQueueMessage } from "@/lib/email/inbound";
 import type { IntakeActions, IntakeInput, IntakeResult } from "@/lib/email/intake-types";
@@ -21,15 +21,15 @@ export async function intakeIncomingMail(env: CloudflareEnv, input: IntakeInput,
 
 	let forwardedTo: string | null = null;
 	if (decision?.action === "forward" && decision.forwardTo) {
-		const forwarded = await actions.forward?.(decision.forwardTo, { [MAILFLARE_FORWARDED_HEADER]: "1" });
+		const forwarded = await actions.forward?.(decision.forwardTo, { [CMAIL_FORWARDED_HEADER]: "1" });
 		if (forwarded) forwardedTo = decision.forwardTo;
 		if (forwarded && !decision.keepCopy) return { action: "forward", forwardedTo };
 	}
 
-	const alreadyForwarded = input.headers[MAILFLARE_FORWARDED_HEADER.toLowerCase()] === "1" || input.headers[MAILFLARE_FORWARDED_HEADER] === "1";
+	const alreadyForwarded = input.headers[CMAIL_FORWARDED_HEADER.toLowerCase()] === "1" || input.headers[CMAIL_FORWARDED_HEADER] === "1";
 	if (!alreadyForwarded) {
 		const destination = await getAccountForwardingDestination(env, input.to);
-		if (destination) await actions.forward?.(destination, { [MAILFLARE_FORWARDED_HEADER]: "1" });
+		if (destination) await actions.forward?.(destination, { [CMAIL_FORWARDED_HEADER]: "1" });
 	}
 
 	const rawR2Key = `inbound/${Date.now()}-${newId()}.eml`;

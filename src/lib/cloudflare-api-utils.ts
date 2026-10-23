@@ -64,5 +64,6 @@ export function getCloudflareAuthHint(errors: CfApiError[], path = "") {
 }
 
 export function getEmailWorkerName(): string {
-	return "mailflare";
+	// Deployment renamed from upstream default: the Worker is deployed as `cmail`.
+	return "cmail";
 }

@@ -69,15 +69,15 @@ export function useMessageCounts(mailboxId?: string | null, enabled = true) {
 				},
 			}));
 		}
-		window.addEventListener("mailflare:messages-changed", onMessagesChanged);
-		window.addEventListener("mailflare:message-counts-changed", onMessagesChanged);
-		window.addEventListener("mailflare:message-counts-delta", onMessageCountsDelta);
+		window.addEventListener("cmail:messages-changed", onMessagesChanged);
+		window.addEventListener("cmail:message-counts-changed", onMessagesChanged);
+		window.addEventListener("cmail:message-counts-delta", onMessageCountsDelta);
 
 		return () => {
 			cancelled = true;
-			window.removeEventListener("mailflare:messages-changed", onMessagesChanged);
-			window.removeEventListener("mailflare:message-counts-changed", onMessagesChanged);
-			window.removeEventListener("mailflare:message-counts-delta", onMessageCountsDelta);
+			window.removeEventListener("cmail:messages-changed", onMessagesChanged);
+			window.removeEventListener("cmail:message-counts-changed", onMessagesChanged);
+			window.removeEventListener("cmail:message-counts-delta", onMessageCountsDelta);
 			if (refreshTimer) window.clearTimeout(refreshTimer);
 		};
 	}, [enabled, mailboxId]);

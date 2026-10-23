@@ -1,4 +1,4 @@
-const STORAGE_KEY = "mailflare-assistant-enabled";
+const STORAGE_KEY = "cmail-assistant-enabled";
 
 export function readInitialAssistantAvailability(): boolean | null {
 	if (typeof window === "undefined") return null;
