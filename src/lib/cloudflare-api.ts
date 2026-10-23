@@ -225,7 +225,16 @@ export async function ensureEmailRoutingRuleToWorker(
 	const normalized = address.toLowerCase();
 	const workerName = getEmailWorkerName(env);
 	const rules = await listEmailRoutingRules(env, zoneId);
-	const existing = rules.find((rule) => isWorkerRouteForAddress(rule, normalized, workerName));
+	const existing =
+		rules.find((rule) => isWorkerRouteForAddress(rule, normalized, workerName)) ??
+		// Heal rules still pointing at a stale/different worker name (e.g. a previous
+		// deployment name or the other instance) instead of failing with a 409 duplicate.
+		rules.find(
+			(rule) =>
+				rule.matchers?.some(
+					(matcher) => matcher.type === "literal" && matcher.field === "to" && matcher.value?.toLowerCase() === normalized,
+				) && rule.actions?.some((action) => action.type === "worker"),
+		);
 
 	if (existing?.enabled) return existing;
 	if (existing?.id) {
