@@ -23,6 +23,7 @@ export async function getBranding(env: CloudflareEnv): Promise<Branding> {
 		return {
 			appName: settings?.appName || DEFAULT_APP_NAME,
 			hasCustomIcon: !!settings?.iconKey,
+			accentColor: settings?.accentColor ?? null,
 			canCustomizeBranding: true,
 		};
 	} catch {
@@ -50,12 +51,14 @@ export async function updateBranding(
 		.values({
 			id: APP_SETTINGS_ID,
 			appName: input.appName,
+			accentColor: input.accentColor ?? null,
 			iconKey: iconKey ?? null,
 		})
 		.onConflictDoUpdate({
 			target: appSettings.id,
 			set: {
 				appName: input.appName,
+				accentColor: input.accentColor ?? null,
 				...(iconKey ? { iconKey } : {}),
 				updatedAt: new Date(),
 			},

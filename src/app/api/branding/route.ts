@@ -22,8 +22,8 @@ export async function PUT(request: Request) {
 	const form = await request.formData();
 	const appName = String(form.get("appName") ?? "").trim();
 	const accentColorValue = form.get("accentColor");
-const accentColor = typeof accentColorValue === "string" && /^#[0-9a-fA-F]{6}$/.test(accentColorValue.trim()) ? accentColorValue.trim() : null;
-const iconValue = form.get("icon");
+		const accentColor = typeof accentColorValue === "string" && /^#[0-9a-fA-F]{6}$/.test(accentColorValue.trim()) ? accentColorValue.trim() : null;
+		const iconValue = form.get("icon");
 	if (!appName || appName.length > 60) {
 		return NextResponse.json({ error: "App name must be between 1 and 60 characters" }, { status: 400 });
 	}
