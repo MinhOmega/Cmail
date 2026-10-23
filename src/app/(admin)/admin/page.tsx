@@ -1,3 +1,4 @@
+import { Bot, Mail, Globe2, Palette, Users, KeyRound } from "lucide-react";
 "use client";
 
 import Link from "next/link";
