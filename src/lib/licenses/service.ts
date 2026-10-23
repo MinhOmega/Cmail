@@ -43,21 +43,23 @@ export async function getLicenseStatus(env: CloudflareEnv): Promise<LicenseStatu
 	return toLicenseStatus(await getOrCreateLicenseSettings(env));
 }
 
+function forkFeature(env: CloudflareEnv, flag: string): boolean {
+	// Fork-local capability flags set via deployment vars (ENABLE_*).
+	return (env as unknown as Record<string, string | undefined>)[flag] === "true";
+}
+
 export async function getLicenseEntitlements(env: CloudflareEnv): Promise<LicenseEntitlements> {
-	try {
-		const status = await getLicenseStatus(env);
-		// Pro adds accounts up to its seat limit; Team is unlimited and also unlocks shared mailboxes.
-		return {
-			plan: status.plan,
-			canCustomizeBranding: status.active,
-			canManageAccounts: status.active,
-			canShareMailboxes: status.active && status.plan === "team",
-			accountSeatLimit: status.seatLimit,
-			canForwardEmail: status.active,
-		};
-	} catch {
-		return { plan: "community", canCustomizeBranding: false, canManageAccounts: false, canShareMailboxes: false, accountSeatLimit: 0, canForwardEmail: false };
-	}
+	// Fork entitlements: this AGPL fork implements these capabilities itself and
+	// gates them with ENABLE_* deployment vars. No commercial license is
+	// activated or implied — upstream's Paymug licensing is left untouched.
+	return {
+		plan: "community",
+		canCustomizeBranding: forkFeature(env, "ENABLE_BRANDING"),
+		canManageAccounts: forkFeature(env, "ENABLE_MULTIUSER"),
+		canShareMailboxes: forkFeature(env, "ENABLE_SHARED_MAILBOXES"),
+		accountSeatLimit: null,
+		canForwardEmail: forkFeature(env, "ENABLE_FORWARDING"),
+	};
 }
 
 async function updateLicenseFromPaymug(

@@ -1,39 +1,140 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "cmail",
-	"routes": [{ "pattern": "mail.minhvo.site", "custom_domain": true }],
+	"name": "cmail-app",
 	"main": "./worker.ts",
 	"compatibility_date": "2026-05-20",
 	"keep_vars": true,
-	"compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-	"vars": { "WORKER_NAME": "cmail" },
-	"assets": { "binding": "ASSETS", "not_found_handling": "none" },
-	"images": { "binding": "IMAGES" },
-	"services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "cmail" }],
-	"durable_objects": { "bindings": [{ "name": "REALTIME", "class_name": "RealtimeHub" }] },
-	"migrations": [{ "tag": "v1", "new_sqlite_classes": ["RealtimeHub"] }],
-	"triggers": { "crons": ["0 2 * * *", "*/5 * * * *"] },
-	"ratelimits": [
-		{ "name": "LOGIN_RATE_LIMIT", "namespace_id": "1001", "simple": { "limit": 20, "period": 60 } },
-		{ "name": "DEVICE_LOGIN_RATE_LIMIT", "namespace_id": "1003", "simple": { "limit": 10, "period": 60 } },
-		{ "name": "AGENT_RATE_LIMIT", "namespace_id": "1002", "simple": { "limit": 120, "period": 60 } }
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
 	],
-	"observability": { "enabled": true },
+	"vars": {
+		"WORKER_NAME": "cmail-app",
+		"ENABLE_FORWARDING": "true",
+		"ENABLE_BRANDING": "true",
+		"ENABLE_MULTIUSER": "true",
+		"ENABLE_SHARED_MAILBOXES": "true"
+	},
+	"assets": {
+		"binding": "ASSETS",
+		"not_found_handling": "none"
+	},
+	"images": {
+		"binding": "IMAGES"
+	},
+	"services": [
+		{
+			"binding": "WORKER_SELF_REFERENCE",
+			"service": "cmail-app"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "REALTIME",
+				"class_name": "RealtimeHub"
+			}
+		]
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": [
+				"RealtimeHub"
+			]
+		}
+	],
+	"triggers": {
+		"crons": [
+			"0 2 * * *",
+			"*/5 * * * *"
+		]
+	},
+	"ratelimits": [
+		{
+			"name": "LOGIN_RATE_LIMIT",
+			"namespace_id": "1001",
+			"simple": {
+				"limit": 20,
+				"period": 60
+			}
+		},
+		{
+			"name": "DEVICE_LOGIN_RATE_LIMIT",
+			"namespace_id": "1003",
+			"simple": {
+				"limit": 10,
+				"period": 60
+			}
+		},
+		{
+			"name": "AGENT_RATE_LIMIT",
+			"namespace_id": "1002",
+			"simple": {
+				"limit": 120,
+				"period": 60
+			}
+		}
+	],
+	"observability": {
+		"enabled": true
+	},
 	"upload_source_maps": true,
-	"send_email": [{ "name": "EMAIL", "remote": false }],
-	"ai": { "binding": "AI", "remote": true },
-	"d1_databases": [{ "binding": "DB", "database_name": "cmail", "database_id": "93bf1fbf-82bd-4216-8bcf-2195a6d85283", "migrations_dir": "drizzle/migrations" }],
-	"r2_buckets": [{ "binding": "BUCKET", "bucket_name": "cmail-raw" }],
+	"send_email": [
+		{
+			"name": "EMAIL",
+			"remote": false
+		}
+	],
+	"ai": {
+		"binding": "AI",
+		"remote": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "cmail",
+			"database_id": "72ecc1e8-35cc-432a-8bf6-ac296ddb7468",
+			"migrations_dir": "drizzle/migrations"
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "BUCKET",
+			"bucket_name": "cmail-app-raw"
+		}
+	],
 	"queues": {
 		"producers": [
-			{ "binding": "INBOUND_QUEUE", "queue": "cmail-inbound" },
-			{ "binding": "OUTBOUND_QUEUE", "queue": "cmail-outbound" },
-			{ "binding": "AGENT_QUEUE", "queue": "cmail-agent" }
+			{
+				"binding": "INBOUND_QUEUE",
+				"queue": "cmail-app-inbound"
+			},
+			{
+				"binding": "OUTBOUND_QUEUE",
+				"queue": "cmail-app-outbound"
+			},
+			{
+				"binding": "AGENT_QUEUE",
+				"queue": "cmail-app-agent"
+			}
 		],
 		"consumers": [
-			{ "queue": "cmail-inbound", "max_batch_size": 5, "max_retries": 3 },
-			{ "queue": "cmail-outbound", "max_batch_size": 5, "max_retries": 3 },
-			{ "queue": "cmail-agent", "max_batch_size": 1, "max_retries": 3 }
+			{
+				"queue": "cmail-app-inbound",
+				"max_batch_size": 5,
+				"max_retries": 3
+			},
+			{
+				"queue": "cmail-app-outbound",
+				"max_batch_size": 5,
+				"max_retries": 3
+			},
+			{
+				"queue": "cmail-app-agent",
+				"max_batch_size": 1,
+				"max_retries": 3
+			}
 		]
 	}
 }
