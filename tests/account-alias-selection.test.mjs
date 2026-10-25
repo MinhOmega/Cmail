@@ -56,8 +56,6 @@ async function fixture(t, { rules = [], failAddress, slowAddress } = {}) {
 			('two', 'admin', 'two.test', 'zone-two', 'active', 1),
 			('pending', 'admin', 'pending.test', 'zone-pending', 'pending', 1),
 			('foreign', 'other', 'foreign.test', 'zone-foreign', 'active', 1);
-		INSERT INTO license_settings (id, instance_id, plan, state, features, updated_at)
-			VALUES ('default', 'test-instance', 'team', 'active', '[]', 1);
 	`);
 	database.db.prepare("INSERT INTO api_keys (id, user_id, name, prefix, key_hash, scopes, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)")
 		.run("key", "admin", "Test", key.prefix, key.hash, '["accounts"]', 1);
@@ -236,20 +234,17 @@ test("account creation enforces admin authorization; the fork flag replaces the 
 	const f = await fixture(t);
 	assert.equal((await f.post("api", {}, "invalid-test-key")).status, 401);
 	assert.equal((await f.post("dashboard", {}, "invalid-test-session")).status, 403);
-	// Fork: entitlements come from ENABLE_MULTIUSER (fixture env), so an
-	// inactive commercial license no longer blocks account creation.
-	f.database.db.exec("UPDATE license_settings SET state = 'inactive'");
+	// Fork: entitlements come from ENABLE_MULTIUSER (fixture env); there is no
+	// commercial license state left that could block account creation.
 	assert.equal((await f.post("api")).status, 201);
 	assert.equal((await f.post("dashboard", { username: "flagdash" })).status, 201);
 });
 
 test("the fork has no seat limit; commercial license state is ignored", async (t) => {
 	const f = await fixture(t);
-	// Fork: getLicenseEntitlements reports accountSeatLimit = null regardless of
-	// license_settings, so restrictive license rows cannot block creation.
-	f.database.db.exec(`UPDATE license_settings SET plan = 'pro', state = 'active', seat_limit = 0`);
+	// Fork: getLicenseEntitlements reports accountSeatLimit = null, so creation
+	// is never seat-limited regardless of how many accounts already exist.
 	assert.equal((await f.post("api", { username: "seat-one" })).status, 201, "fork ignores seat limits");
-	f.database.db.exec("UPDATE license_settings SET plan = 'team', state = 'inactive', seat_limit = NULL");
 	assert.equal((await f.post("api", { username: "seat-two" })).status, 201);
 });
 
