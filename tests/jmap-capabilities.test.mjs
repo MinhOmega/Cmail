@@ -29,6 +29,7 @@ await build({
 	format: "esm",
 	target: "node22",
 	tsconfig: join(root, "tsconfig.json"),
+	alias: { "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 	logLevel: "silent",
 });
 

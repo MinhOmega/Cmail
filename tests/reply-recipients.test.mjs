@@ -25,6 +25,7 @@ await build({
 	target: "node24",
 	tsconfig: join(root, "tsconfig.json"),
 	packages: "external",
+	alias: { "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 	logLevel: "silent",
 });
 const { createReplyDraft, getReplyRecipients, getReplyThreading, hasAdditionalRecipients, getOwnAddressForMessage, parseRawMime } = await import(pathToFileURL(join(directory, "entry.mjs")).href);
