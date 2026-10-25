@@ -1,4 +1,3 @@
-import { newId } from "@/lib/ids";
 import { getAccountForwardingDestination, CMAIL_FORWARDED_HEADER } from "@/lib/email/account-forwarding";
 import { resolveIncomingMail } from "@/lib/email/incoming";
 import { inboundStorageKey } from "@/lib/email/inbound-id";
@@ -33,15 +32,14 @@ export async function intakeIncomingMail(env: CloudflareEnv, input: IntakeInput,
 		if (destination) await actions.forward?.(destination, { [CMAIL_FORWARDED_HEADER]: "1" });
 	}
 
-	// A relay retry replays the same message, so key the object on its RFC
-	// Message-ID (scoped by mailbox) instead of a fresh timestamp: the consumer
-	// dedupes by `(mailboxId, rawR2Key)`, making a retried delivery idempotent.
+	// A relay retry replays the same bytes, so key the object on a content hash
+	// (scoped by mailbox): the consumer dedupes by `(mailboxId, rawR2Key)`.
 	const rawR2Key = await inboundStorageKey(input.raw, decision?.mailbox?.mailboxId);
 	await env.BUCKET.put(rawR2Key, input.raw, {
 		httpMetadata: { contentType: "message/rfc822" },
 		customMetadata: { from: input.from, to: input.to },
 	});
-	const payload: InboundQueueMessage = { from: input.from, to: input.to, rawR2Key, headers: input.headers };
+	const payload: InboundQueueMessage = { from: input.from, to: input.to, rawR2Key, headers: input.headers, verdicts: input.verdicts, senderIp: input.senderIp };
 	await env.INBOUND_QUEUE.send(payload);
 	return { action: "store", rawR2Key, forwardedTo };
 }

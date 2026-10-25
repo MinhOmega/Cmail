@@ -77,7 +77,8 @@
 		}
 	],
 	"observability": {
-		"enabled": true
+		"enabled": true,
+		"traces": { "enabled": true },
 	},
 	"upload_source_maps": true,
 	"send_email": [
@@ -128,8 +129,9 @@
 			{
 				"queue": "cmail-app-outbound",
 				"max_batch_size": 5,
-				"max_retries": 3
-			},
+				// Sends wait out the undo window already; do not also wait for a batch to fill.
+				"max_batch_timeout": 1,
+				"max_retries": 3,			},
 			{
 				"queue": "cmail-app-agent",
 				"max_batch_size": 1,
