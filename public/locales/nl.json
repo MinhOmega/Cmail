@@ -331,7 +331,6 @@
 	"admin.nav.backups": "Back-ups",
 	"admin.nav.product": "Product",
 	"admin.nav.branding": "Huisstijl",
-	"admin.nav.licenses": "Licenties",
 	"settings.nav.menu": "Instellingenmenu",
 	"settings.nav.settings": "Instellingen",
 	"settings.nav.account": "Account",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "Domein van alias {n}",
 	"aliases.remove": "Alias {n} verwijderen",
 	"aliases.add": "Alias toevoegen",
-	"license.required": "{tier}-licentie vereist",
 	"license.upgradeHint": "Upgrade je licentie om deze functie te gebruiken.",
 	"license.view": "Licenties bekijken",
 	"update.checkFailed": "Controleren op updates mislukt",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "Gebruik deze sleutel met een MCP-client om alleen de hieronder geselecteerde beheergebieden te beheren. Hij kan geen mail lezen of verzenden.",
 	"adminKeys.createKey": "Sleutel maken",
 	"branding.title": "Huisstijl",
-	"branding.proOnly": "Aangepaste huisstijl is beschikbaar met een Pro- of Team-licentie.",
-	"branding.licenseRequired": "Licentie vereist",
-	"branding.originalNote": "Deze installatie blijft de oorspronkelijke Cmail-naam, app-pictogram en favicon gebruiken.",
 	"branding.buyPro": "Pro kopen · $29",
 	"branding.buyTeam": "Team kopen · vanaf $249",
 	"branding.updated": "Huisstijl bijgewerkt",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

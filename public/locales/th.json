@@ -331,7 +331,6 @@
 	"admin.nav.backups": "การสำรองข้อมูล",
 	"admin.nav.product": "ผลิตภัณฑ์",
 	"admin.nav.branding": "การสร้างแบรนด์",
-	"admin.nav.licenses": "ใบอนุญาต",
 	"settings.nav.menu": "เมนูการตั้งค่า",
 	"settings.nav.settings": "การตั้งค่า",
 	"settings.nav.account": "บัญชี",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "โดเมนของนามแฝง {n}",
 	"aliases.remove": "ลบนามแฝง {n}",
 	"aliases.add": "เพิ่มนามแฝง",
-	"license.required": "ต้องมีใบอนุญาต {tier}",
 	"license.upgradeHint": "อัปเกรดใบอนุญาตของคุณเพื่อใช้ฟีเจอร์นี้",
 	"license.view": "ดูใบอนุญาต",
 	"update.checkFailed": "ไม่สามารถตรวจสอบการอัปเดตได้",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "ใช้คีย์นี้กับไคลเอนต์ MCP เพื่อจัดการเฉพาะส่วนการดูแลระบบที่เลือกด้านล่าง ไม่สามารถอ่านหรือส่งอีเมลได้",
 	"adminKeys.createKey": "สร้างคีย์",
 	"branding.title": "การสร้างแบรนด์",
-	"branding.proOnly": "การสร้างแบรนด์ที่กำหนดเองมีให้ใช้ในใบอนุญาต Pro หรือ Team",
-	"branding.licenseRequired": "ต้องมีใบอนุญาต",
-	"branding.originalNote": "การติดตั้งนี้ยังคงใช้ชื่อ ไอคอนแอป และ favicon ดั้งเดิมของ Cmail",
 	"branding.buyPro": "ซื้อ Pro · $29",
 	"branding.buyTeam": "ซื้อ Team · เริ่มต้น $249",
 	"branding.updated": "อัปเดตการสร้างแบรนด์แล้ว",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

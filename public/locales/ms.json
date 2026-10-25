@@ -331,7 +331,6 @@
 	"admin.nav.backups": "Sandaran",
 	"admin.nav.product": "Produk",
 	"admin.nav.branding": "Penjenamaan",
-	"admin.nav.licenses": "Lesen",
 	"settings.nav.menu": "Menu tetapan",
 	"settings.nav.settings": "Tetapan",
 	"settings.nav.account": "Akaun",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "Domain alias {n}",
 	"aliases.remove": "Alih keluar alias {n}",
 	"aliases.add": "Tambah alias",
-	"license.required": "Lesen {tier} diperlukan",
 	"license.upgradeHint": "Naik taraf lesen anda untuk menggunakan ciri ini.",
 	"license.view": "Lihat lesen",
 	"update.checkFailed": "Tidak dapat menyemak kemas kini",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "Gunakan kunci ini dengan klien MCP untuk mengurus hanya kawasan admin yang dipilih di bawah. Ia tidak boleh membaca atau menghantar mel.",
 	"adminKeys.createKey": "Cipta kunci",
 	"branding.title": "Penjenamaan",
-	"branding.proOnly": "Penjenamaan tersuai tersedia dengan lesen Pro atau Team.",
-	"branding.licenseRequired": "Lesen diperlukan",
-	"branding.originalNote": "Pemasangan ini terus menggunakan nama, ikon apl dan favicon Cmail yang asal.",
 	"branding.buyPro": "Beli Pro · $29",
 	"branding.buyTeam": "Beli Team · bermula $249",
 	"branding.updated": "Penjenamaan dikemas kini",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

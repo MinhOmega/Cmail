@@ -331,7 +331,6 @@
 	"admin.nav.backups": "උපස්ථ",
 	"admin.nav.product": "නිෂ්පාදනය",
 	"admin.nav.branding": "සන්නාමකරණය",
-	"admin.nav.licenses": "බලපත්‍ර",
 	"settings.nav.menu": "සැකසීම් මෙනුව",
 	"settings.nav.settings": "සැකසීම්",
 	"settings.nav.account": "ගිණුම",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "අන්වර්ථ ලිපිනය {n} හි වසම",
 	"aliases.remove": "අන්වර්ථ ලිපිනය {n} ඉවත් කරන්න",
 	"aliases.add": "අන්වර්ථ ලිපිනයක් එක් කරන්න",
-	"license.required": "{tier} බලපත්‍රය අවශ්‍යයි",
 	"license.upgradeHint": "මෙම විශේෂාංගය භාවිත කිරීමට ඔබේ බලපත්‍රය උත්ශ්‍රේණි කරන්න.",
 	"license.view": "බලපත්‍ර බලන්න",
 	"update.checkFailed": "යාවත්කාලීන කිරීම් සඳහා පරීක්ෂා කළ නොහැකි විය",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "පහත තෝරාගත් පරිපාලක ප්‍රදේශ පමණක් කළමනාකරණය කිරීමට මෙම යතුර MCP සේවාලාභියෙකු සමඟ භාවිත කරන්න. එයට තැපැල් කියවීමට හෝ යැවීමට නොහැක.",
 	"adminKeys.createKey": "යතුර සාදන්න",
 	"branding.title": "සන්නාමකරණය",
-	"branding.proOnly": "අභිරුචි සන්නාමකරණය Pro හෝ Team බලපත්‍රයක් සමඟ ලබා ගත හැක.",
-	"branding.licenseRequired": "බලපත්‍රය අවශ්‍යයි",
-	"branding.originalNote": "මෙම ස්ථාපනය මුල් Cmail නම, යෙදුම් අයිකනය සහ favicon දිගටම භාවිත කරයි.",
 	"branding.buyPro": "Pro මිලදී ගන්න · $29",
 	"branding.buyTeam": "Team මිලදී ගන්න · $249 සිට",
 	"branding.updated": "සන්නාමකරණය යාවත්කාලීන කරන ලදී",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

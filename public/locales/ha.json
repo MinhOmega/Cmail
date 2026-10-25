@@ -331,7 +331,6 @@
 	"admin.nav.backups": "Ajiyar bayanai",
 	"admin.nav.product": "Samfur",
 	"admin.nav.branding": "Alama",
-	"admin.nav.licenses": "Lasisi",
 	"settings.nav.menu": "Menu na saituna",
 	"settings.nav.settings": "Saituna",
 	"settings.nav.account": "Asusu",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "Yankin laƙabi {n}",
 	"aliases.remove": "Cire laƙabi {n}",
 	"aliases.add": "Ƙara laƙabi",
-	"license.required": "Ana buƙatar lasisin {tier}",
 	"license.upgradeHint": "Haɓaka lasisinka don amfani da wannan siffa.",
 	"license.view": "Duba lasisi",
 	"update.checkFailed": "Ba a iya duba sabuntawa ba",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "Yi amfani da wannan maɓalli da abokin MCP don sarrafa wuraren gudanarwar da aka zaɓa a ƙasa kawai. Ba zai iya karanta ko aika saƙo ba.",
 	"adminKeys.createKey": "Ƙirƙiri maɓalli",
 	"branding.title": "Alama",
-	"branding.proOnly": "Alama ta musamman tana samuwa da lasisin Pro ko Team.",
-	"branding.licenseRequired": "Ana buƙatar lasisi",
-	"branding.originalNote": "Wannan shigarwa tana ci gaba da amfani da sunan Cmail na asali, alamar manhaja da favicon.",
 	"branding.buyPro": "Sayi Pro · $29",
 	"branding.buyTeam": "Sayi Team · daga $249",
 	"branding.updated": "An sabunta alama",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

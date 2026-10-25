@@ -331,7 +331,6 @@
 	"admin.nav.backups": "Nakala rudufu",
 	"admin.nav.product": "Bidhaa",
 	"admin.nav.branding": "Chapa",
-	"admin.nav.licenses": "Leseni",
 	"settings.nav.menu": "Menyu ya mipangilio",
 	"settings.nav.settings": "Mipangilio",
 	"settings.nav.account": "Akaunti",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "Kikoa cha jina mbadala {n}",
 	"aliases.remove": "Ondoa jina mbadala {n}",
 	"aliases.add": "Ongeza jina mbadala",
-	"license.required": "Leseni ya {tier} inahitajika",
 	"license.upgradeHint": "Boresha leseni yako ili kutumia kipengele hiki.",
 	"license.view": "Tazama leseni",
 	"update.checkFailed": "Imeshindwa kukagua masasisho",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "Tumia ufunguo huu na mteja wa MCP kusimamia maeneo ya usimamizi yaliyochaguliwa hapa chini tu. Hauwezi kusoma wala kutuma barua.",
 	"adminKeys.createKey": "Unda ufunguo",
 	"branding.title": "Chapa",
-	"branding.proOnly": "Chapa maalum inapatikana kwa leseni ya Pro au Team.",
-	"branding.licenseRequired": "Leseni inahitajika",
-	"branding.originalNote": "Usakinishaji huu unaendelea kutumia jina, aikoni ya programu na favicon asili ya Cmail.",
 	"branding.buyPro": "Nunua Pro · $29",
 	"branding.buyTeam": "Nunua Team · kuanzia $249",
 	"branding.updated": "Chapa imesasishwa",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

@@ -331,7 +331,6 @@
 	"admin.nav.backups": "ബാക്കപ്പുകൾ",
 	"admin.nav.product": "ഉൽപ്പന്നം",
 	"admin.nav.branding": "ബ്രാൻഡിംഗ്",
-	"admin.nav.licenses": "ലൈസൻസുകൾ",
 	"settings.nav.menu": "ക്രമീകരണ മെനു",
 	"settings.nav.settings": "ക്രമീകരണങ്ങൾ",
 	"settings.nav.account": "അക്കൗണ്ട്",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "അപരനാമം {n} ഡൊമെയ്ൻ",
 	"aliases.remove": "അപരനാമം {n} നീക്കുക",
 	"aliases.add": "അപരനാമം ചേർക്കുക",
-	"license.required": "{tier} ലൈസൻസ് ആവശ്യമാണ്",
 	"license.upgradeHint": "ഈ സവിശേഷത ഉപയോഗിക്കാൻ നിങ്ങളുടെ ലൈസൻസ് അപ്ഗ്രേഡ് ചെയ്യുക.",
 	"license.view": "ലൈസൻസുകൾ കാണുക",
 	"update.checkFailed": "അപ്ഡേറ്റുകൾ പരിശോധിക്കാൻ കഴിഞ്ഞില്ല",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "താഴെ തിരഞ്ഞെടുത്ത അഡ്മിൻ മേഖലകൾ മാത്രം നിയന്ത്രിക്കാൻ ഈ കീ ഒരു MCP ക്ലയന്റുമായി ഉപയോഗിക്കുക. ഇതിന് മെയിൽ വായിക്കാനോ അയയ്ക്കാനോ കഴിയില്ല.",
 	"adminKeys.createKey": "കീ സൃഷ്ടിക്കുക",
 	"branding.title": "ബ്രാൻഡിംഗ്",
-	"branding.proOnly": "Pro അല്ലെങ്കിൽ Team ലൈസൻസ് ഉപയോഗിച്ച് ഇഷ്ടാനുസൃത ബ്രാൻഡിംഗ് ലഭ്യമാണ്.",
-	"branding.licenseRequired": "ലൈസൻസ് ആവശ്യമാണ്",
-	"branding.originalNote": "ഈ ഇൻസ്റ്റാളേഷൻ യഥാർത്ഥ Cmail പേര്, ആപ്പ് ഐക്കൺ, ഫാവിക്കോൺ എന്നിവ ഉപയോഗിക്കുന്നത് തുടരുന്നു.",
 	"branding.buyPro": "Pro വാങ്ങുക · $29",
 	"branding.buyTeam": "Team വാങ്ങുക · $249 മുതൽ",
 	"branding.updated": "ബ്രാൻഡിംഗ് അപ്ഡേറ്റ് ചെയ്തു",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

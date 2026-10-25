@@ -36,7 +36,7 @@ export async function updateBranding(
 	input: { appName: string; icon?: File | null; accentColor?: string | null },
 ): Promise<Branding> {
 	if (!(await getLicenseEntitlements(env)).canCustomizeBranding) {
-		throw new Error("A Pro or Team license is required to customize branding");
+		throw new Error("Branding is disabled on this instance");
 	}
 	let iconKey: string | undefined;
 	if (input.icon) {

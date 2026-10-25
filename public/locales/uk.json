@@ -339,7 +339,6 @@
 	"admin.nav.backups": "Резервні копії",
 	"admin.nav.product": "Продукт",
 	"admin.nav.branding": "Брендинг",
-	"admin.nav.licenses": "Ліцензії",
 	"settings.nav.menu": "Меню налаштувань",
 	"settings.nav.settings": "Налаштування",
 	"settings.nav.account": "Обліковий запис",
@@ -949,7 +948,6 @@
 	"aliases.domainLabel": "Домен псевдоніма {n}",
 	"aliases.remove": "Видалити псевдонім {n}",
 	"aliases.add": "Додати псевдонім",
-	"license.required": "Потрібна ліцензія {tier}",
 	"license.upgradeHint": "Оновіть ліцензію, щоб користуватися цією функцією.",
 	"license.view": "Переглянути ліцензії",
 	"update.checkFailed": "Не вдалося перевірити оновлення",
@@ -1400,9 +1398,6 @@
 	"adminKeys.allowMcpHint": "Використовуйте цей ключ із клієнтом MCP лише для керування вибраними нижче областями адміністрування. Він не може читати чи надсилати пошту.",
 	"adminKeys.createKey": "Створити ключ",
 	"branding.title": "Брендинг",
-	"branding.proOnly": "Власний брендинг доступний із ліцензією Pro або Team.",
-	"branding.licenseRequired": "Потрібна ліцензія",
-	"branding.originalNote": "Це встановлення й надалі використовує оригінальну назву, значок застосунку та фавікон Cmail.",
 	"branding.buyPro": "Купити Pro · $29",
 	"branding.buyTeam": "Купити Team · від $249",
 	"branding.updated": "Брендинг оновлено",
@@ -2033,5 +2028,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

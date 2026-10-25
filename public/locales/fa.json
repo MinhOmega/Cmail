@@ -331,7 +331,6 @@
 	"admin.nav.backups": "پشتیبان‌گیری‌ها",
 	"admin.nav.product": "محصول",
 	"admin.nav.branding": "برندسازی",
-	"admin.nav.licenses": "مجوزها",
 	"settings.nav.menu": "منوی تنظیمات",
 	"settings.nav.settings": "تنظیمات",
 	"settings.nav.account": "حساب",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "دامنه نام مستعار {n}",
 	"aliases.remove": "حذف نام مستعار {n}",
 	"aliases.add": "افزودن نام مستعار",
-	"license.required": "مجوز {tier} لازم است",
 	"license.upgradeHint": "برای استفاده از این قابلیت، مجوز خود را ارتقا دهید.",
 	"license.view": "مشاهده مجوزها",
 	"update.checkFailed": "بررسی به‌روزرسانی‌ها ممکن نشد",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "از این کلید با یک کلاینت MCP فقط برای مدیریت بخش‌های مدیریتی انتخاب‌شده در زیر استفاده کنید. نمی‌تواند ایمیل بخواند یا ارسال کند.",
 	"adminKeys.createKey": "ایجاد کلید",
 	"branding.title": "برندسازی",
-	"branding.proOnly": "برندسازی سفارشی با مجوز Pro یا Team در دسترس است.",
-	"branding.licenseRequired": "مجوز لازم است",
-	"branding.originalNote": "این نصب همچنان از نام، نماد برنامه و فاوآیکون اصلی Cmail استفاده می‌کند.",
 	"branding.buyPro": "خرید Pro · ۲۹$",
 	"branding.buyTeam": "خرید Team · از ۲۴۹$",
 	"branding.updated": "برندسازی به‌روزرسانی شد",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

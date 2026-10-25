@@ -327,7 +327,6 @@
 	"admin.nav.backups": "备份",
 	"admin.nav.product": "产品",
 	"admin.nav.branding": "品牌",
-	"admin.nav.licenses": "许可证",
 	"settings.nav.menu": "设置菜单",
 	"settings.nav.settings": "设置",
 	"settings.nav.account": "账户",
@@ -931,7 +930,6 @@
 	"aliases.domainLabel": "别名 {n} 的域名",
 	"aliases.remove": "移除别名 {n}",
 	"aliases.add": "添加别名",
-	"license.required": "需要 {tier} 许可证",
 	"license.upgradeHint": "升级你的许可证以使用此功能。",
 	"license.view": "查看许可证",
 	"update.checkFailed": "无法检查更新",
@@ -1370,9 +1368,6 @@
 	"adminKeys.allowMcpHint": "将此密钥与 MCP 客户端配合使用，仅管理下方选定的管理区域。它无法读取或发送邮件。",
 	"adminKeys.createKey": "创建密钥",
 	"branding.title": "品牌",
-	"branding.proOnly": "自定义品牌需要 Pro 或 Team 许可证。",
-	"branding.licenseRequired": "需要许可证",
-	"branding.originalNote": "此安装继续使用原始的 Cmail 名称、应用图标和网站图标。",
 	"branding.buyPro": "购买 Pro · $29",
 	"branding.buyTeam": "购买 Team · $249 起",
 	"branding.updated": "品牌已更新",
@@ -1988,5 +1983,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

@@ -347,7 +347,6 @@
 	"admin.nav.backups": "النسخ الاحتياطية",
 	"admin.nav.product": "المنتج",
 	"admin.nav.branding": "العلامة التجارية",
-	"admin.nav.licenses": "التراخيص",
 	"settings.nav.menu": "قائمة الإعدادات",
 	"settings.nav.settings": "الإعدادات",
 	"settings.nav.account": "الحساب",
@@ -961,7 +960,6 @@
 	"aliases.domainLabel": "نطاق الاسم المستعار {n}",
 	"aliases.remove": "إزالة الاسم المستعار {n}",
 	"aliases.add": "إضافة اسم مستعار",
-	"license.required": "يلزم ترخيص {tier}",
 	"license.upgradeHint": "قم بترقية ترخيصك لاستخدام هذه الميزة.",
 	"license.view": "عرض التراخيص",
 	"update.checkFailed": "تعذّر التحقق من التحديثات",
@@ -1420,9 +1418,6 @@
 	"adminKeys.allowMcpHint": "استخدم هذا المفتاح مع عميل MCP لإدارة مناطق الإدارة المحددة أدناه فقط. لا يمكنه قراءة البريد أو إرساله.",
 	"adminKeys.createKey": "إنشاء مفتاح",
 	"branding.title": "العلامة التجارية",
-	"branding.proOnly": "العلامة التجارية المخصصة متاحة مع ترخيص Pro أو Team.",
-	"branding.licenseRequired": "الترخيص مطلوب",
-	"branding.originalNote": "يواصل هذا التثبيت استخدام اسم Cmail الأصلي وأيقونة التطبيق وأيقونة الموقع.",
 	"branding.buyPro": "شراء Pro · $29",
 	"branding.buyTeam": "شراء Team · ابتداءً من $249",
 	"branding.updated": "تم تحديث العلامة التجارية",
@@ -2063,5 +2058,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

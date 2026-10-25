@@ -339,7 +339,6 @@
 	"admin.nav.backups": "Резервные копии",
 	"admin.nav.product": "Продукт",
 	"admin.nav.branding": "Брендинг",
-	"admin.nav.licenses": "Лицензии",
 	"settings.nav.menu": "Меню настроек",
 	"settings.nav.settings": "Настройки",
 	"settings.nav.account": "Аккаунт",
@@ -949,7 +948,6 @@
 	"aliases.domainLabel": "Домен псевдонима {n}",
 	"aliases.remove": "Удалить псевдоним {n}",
 	"aliases.add": "Добавить псевдоним",
-	"license.required": "Требуется лицензия {tier}",
 	"license.upgradeHint": "Обновите лицензию, чтобы использовать эту функцию.",
 	"license.view": "Посмотреть лицензии",
 	"update.checkFailed": "Не удалось проверить наличие обновлений",
@@ -1400,9 +1398,6 @@
 	"adminKeys.allowMcpHint": "Используйте этот ключ с клиентом MCP, чтобы управлять только выбранными ниже разделами администрирования. Он не может читать или отправлять почту.",
 	"adminKeys.createKey": "Создать ключ",
 	"branding.title": "Брендинг",
-	"branding.proOnly": "Собственный брендинг доступен с лицензией Pro или Team.",
-	"branding.licenseRequired": "Требуется лицензия",
-	"branding.originalNote": "Эта установка по-прежнему использует оригинальное название Cmail, значок приложения и favicon.",
 	"branding.buyPro": "Купить Pro · 29 $",
 	"branding.buyTeam": "Купить Team · от 249 $",
 	"branding.updated": "Брендинг обновлён",
@@ -2033,5 +2028,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

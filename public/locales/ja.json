@@ -327,7 +327,6 @@
 	"admin.nav.backups": "バックアップ",
 	"admin.nav.product": "製品",
 	"admin.nav.branding": "ブランディング",
-	"admin.nav.licenses": "ライセンス",
 	"settings.nav.menu": "設定メニュー",
 	"settings.nav.settings": "設定",
 	"settings.nav.account": "アカウント",
@@ -931,7 +930,6 @@
 	"aliases.domainLabel": "エイリアス {n} のドメイン",
 	"aliases.remove": "エイリアス {n} を削除",
 	"aliases.add": "エイリアスを追加",
-	"license.required": "{tier}ライセンスが必要です",
 	"license.upgradeHint": "この機能を使用するには、ライセンスをアップグレードしてください。",
 	"license.view": "ライセンスを表示",
 	"update.checkFailed": "アップデートを確認できませんでした",
@@ -1370,9 +1368,6 @@
 	"adminKeys.allowMcpHint": "このキーを MCP クライアントで使用すると、下で選択した管理領域のみを管理できます。メールの読み取りや送信はできません。",
 	"adminKeys.createKey": "キーを作成",
 	"branding.title": "ブランディング",
-	"branding.proOnly": "カスタムブランディングは Pro または Team ライセンスで利用できます。",
-	"branding.licenseRequired": "ライセンスが必要です",
-	"branding.originalNote": "このインストールでは、引き続き Cmail の元の名前、アプリアイコン、ファビコンを使用します。",
 	"branding.buyPro": "Pro を購入 · $29",
 	"branding.buyTeam": "Team を購入 · $249 から",
 	"branding.updated": "ブランディングを更新しました",
@@ -1988,5 +1983,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

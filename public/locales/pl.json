@@ -339,7 +339,6 @@
 	"admin.nav.backups": "Kopie zapasowe",
 	"admin.nav.product": "Produkt",
 	"admin.nav.branding": "Branding",
-	"admin.nav.licenses": "Licencje",
 	"settings.nav.menu": "Menu ustawień",
 	"settings.nav.settings": "Ustawienia",
 	"settings.nav.account": "Konto",
@@ -949,7 +948,6 @@
 	"aliases.domainLabel": "Domena aliasu {n}",
 	"aliases.remove": "Usuń alias {n}",
 	"aliases.add": "Dodaj alias",
-	"license.required": "Wymagana licencja {tier}",
 	"license.upgradeHint": "Zaktualizuj licencję, aby korzystać z tej funkcji.",
 	"license.view": "Zobacz licencje",
 	"update.checkFailed": "Nie można sprawdzić aktualizacji",
@@ -1400,9 +1398,6 @@
 	"adminKeys.allowMcpHint": "Używaj tego klucza z klientem MCP do zarządzania tylko wybranymi niżej obszarami administracji. Nie może czytać ani wysyłać poczty.",
 	"adminKeys.createKey": "Utwórz klucz",
 	"branding.title": "Branding",
-	"branding.proOnly": "Własny branding jest dostępny w licencji Pro lub Team.",
-	"branding.licenseRequired": "Wymagana licencja",
-	"branding.originalNote": "Ta instalacja nadal używa oryginalnej nazwy, ikony aplikacji i favicony Cmail.",
 	"branding.buyPro": "Kup Pro · $29",
 	"branding.buyTeam": "Kup Team · od $249",
 	"branding.updated": "Zaktualizowano branding",
@@ -2033,5 +2028,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

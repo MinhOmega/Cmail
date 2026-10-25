@@ -331,7 +331,6 @@
 	"admin.nav.backups": "Backups",
 	"admin.nav.product": "Product",
 	"admin.nav.branding": "Branding",
-	"admin.nav.licenses": "Licenses",
 	"settings.nav.menu": "Settings menu",
 	"settings.nav.settings": "Settings",
 	"settings.nav.account": "Account",
@@ -982,7 +981,6 @@
 	"aliases.domainLabel": "Alias {n} domain",
 	"aliases.remove": "Remove alias {n}",
 	"aliases.add": "Add alias",
-	"license.required": "{tier} license required",
 	"license.upgradeHint": "Upgrade your license to use this feature.",
 	"license.view": "View licenses",
 	"update.checkFailed": "Could not check for updates",
@@ -1425,9 +1423,6 @@
 	"adminKeys.allowMcpHint": "Use this key with an MCP client to manage only the admin areas selected below. It cannot read or send mail.",
 	"adminKeys.createKey": "Create key",
 	"branding.title": "Branding",
-	"branding.proOnly": "Custom branding is available to every workspace.",
-	"branding.licenseRequired": "License required",
-	"branding.originalNote": "This installation continues to use the original Cmail name, app icon, and favicon.",
 	"branding.buyPro": "Buy Pro · $29",
 	"branding.buyTeam": "Buy Team · from $249",
 	"branding.updated": "Branding updated",
@@ -2042,5 +2037,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

@@ -331,7 +331,6 @@
 	"admin.nav.backups": "बैकअप",
 	"admin.nav.product": "उत्पाद",
 	"admin.nav.branding": "ब्रांडिंग",
-	"admin.nav.licenses": "लाइसेंस",
 	"settings.nav.menu": "सेटिंग मेन्यू",
 	"settings.nav.settings": "सेटिंग",
 	"settings.nav.account": "खाता",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "उपनाम {n} का डोमेन",
 	"aliases.remove": "उपनाम {n} हटाएँ",
 	"aliases.add": "उपनाम जोड़ें",
-	"license.required": "{tier} लाइसेंस आवश्यक है",
 	"license.upgradeHint": "इस सुविधा का उपयोग करने के लिए अपना लाइसेंस अपग्रेड करें।",
 	"license.view": "लाइसेंस देखें",
 	"update.checkFailed": "अपडेट की जाँच नहीं हो सकी",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "इस कुंजी का उपयोग MCP क्लाइंट के साथ केवल नीचे चुने गए एडमिन क्षेत्रों को प्रबंधित करने के लिए करें। यह मेल पढ़ या भेज नहीं सकती।",
 	"adminKeys.createKey": "कुंजी बनाएँ",
 	"branding.title": "ब्रांडिंग",
-	"branding.proOnly": "कस्टम ब्रांडिंग Pro या Team लाइसेंस के साथ उपलब्ध है।",
-	"branding.licenseRequired": "लाइसेंस आवश्यक",
-	"branding.originalNote": "यह इंस्टॉलेशन मूल Cmail नाम, ऐप आइकन और फ़ेविकॉन का उपयोग जारी रखता है।",
 	"branding.buyPro": "Pro खरीदें · $29",
 	"branding.buyTeam": "Team खरीदें · $249 से",
 	"branding.updated": "ब्रांडिंग अपडेट हुई",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

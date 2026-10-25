@@ -331,7 +331,6 @@
 	"admin.nav.backups": "ব্যাকআপ",
 	"admin.nav.product": "পণ্য",
 	"admin.nav.branding": "ব্র্যান্ডিং",
-	"admin.nav.licenses": "লাইসেন্স",
 	"settings.nav.menu": "সেটিংস মেনু",
 	"settings.nav.settings": "সেটিংস",
 	"settings.nav.account": "অ্যাকাউন্ট",
@@ -935,7 +934,6 @@
 	"aliases.domainLabel": "অ্যালিয়াস {n}-এর ডোমেইন",
 	"aliases.remove": "অ্যালিয়াস {n} সরান",
 	"aliases.add": "অ্যালিয়াস যোগ করুন",
-	"license.required": "{tier} লাইসেন্স প্রয়োজন",
 	"license.upgradeHint": "এই বৈশিষ্ট্য ব্যবহার করতে আপনার লাইসেন্স আপগ্রেড করুন।",
 	"license.view": "লাইসেন্স দেখুন",
 	"update.checkFailed": "আপডেট পরীক্ষা করা যায়নি",
@@ -1378,9 +1376,6 @@
 	"adminKeys.allowMcpHint": "এই কী MCP ক্লায়েন্টের সাথে ব্যবহার করে শুধু নিচে নির্বাচিত অ্যাডমিন এলাকা পরিচালনা করুন। এটি মেইল পড়তে বা পাঠাতে পারে না।",
 	"adminKeys.createKey": "কী তৈরি করুন",
 	"branding.title": "ব্র্যান্ডিং",
-	"branding.proOnly": "কাস্টম ব্র্যান্ডিং Pro বা Team লাইসেন্সে পাওয়া যায়।",
-	"branding.licenseRequired": "লাইসেন্স প্রয়োজন",
-	"branding.originalNote": "এই ইনস্টলেশন মূল Cmail নাম, অ্যাপ আইকন ও ফেভিকন ব্যবহার করে চলছে।",
 	"branding.buyPro": "Pro কিনুন · $29",
 	"branding.buyTeam": "Team কিনুন · $249 থেকে",
 	"branding.updated": "ব্র্যান্ডিং আপডেট হয়েছে",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

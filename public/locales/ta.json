@@ -331,7 +331,6 @@
 	"admin.nav.backups": "காப்புப்பிரதிகள்",
 	"admin.nav.product": "தயாரிப்பு",
 	"admin.nav.branding": "பிராண்டிங்",
-	"admin.nav.licenses": "உரிமங்கள்",
 	"settings.nav.menu": "அமைப்புகள் மெனு",
 	"settings.nav.settings": "அமைப்புகள்",
 	"settings.nav.account": "கணக்கு",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "மாற்றுப்பெயர் {n} இன் டொமைன்",
 	"aliases.remove": "மாற்றுப்பெயர் {n} ஐ அகற்று",
 	"aliases.add": "மாற்றுப்பெயரைச் சேர்",
-	"license.required": "{tier} உரிமம் தேவை",
 	"license.upgradeHint": "இந்த அம்சத்தைப் பயன்படுத்த உங்கள் உரிமத்தை மேம்படுத்தவும்.",
 	"license.view": "உரிமங்களைக் காண்க",
 	"update.checkFailed": "புதுப்பிப்புகளைச் சரிபார்க்க இயலவில்லை",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "கீழே தேர்ந்தெடுத்த நிர்வாகப் பகுதிகளை மட்டும் நிர்வகிக்க, இந்த விசையை MCP கிளையன்ட்டுடன் பயன்படுத்தவும். இதனால் அஞ்சலைப் படிக்கவோ அனுப்பவோ இயலாது.",
 	"adminKeys.createKey": "விசையை உருவாக்கு",
 	"branding.title": "பிராண்டிங்",
-	"branding.proOnly": "தனிப்பயன் பிராண்டிங் Pro அல்லது Team உரிமத்துடன் கிடைக்கும்.",
-	"branding.licenseRequired": "உரிமம் தேவை",
-	"branding.originalNote": "இந்த நிறுவல் அசல் Cmail பெயர், செயலி ஐகான் மற்றும் ஃபேவிகானையே தொடர்ந்து பயன்படுத்தும்.",
 	"branding.buyPro": "Pro வாங்கு · $29",
 	"branding.buyTeam": "Team வாங்கு · $249 முதல்",
 	"branding.updated": "பிராண்டிங் புதுப்பிக்கப்பட்டது",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

@@ -331,7 +331,6 @@
 	"admin.nav.backups": "బ్యాకప్‌లు",
 	"admin.nav.product": "ఉత్పత్తి",
 	"admin.nav.branding": "బ్రాండింగ్",
-	"admin.nav.licenses": "లైసెన్స్‌లు",
 	"settings.nav.menu": "సెట్టింగ్‌ల మెనూ",
 	"settings.nav.settings": "సెట్టింగ్‌లు",
 	"settings.nav.account": "ఖాతా",
@@ -935,7 +934,6 @@
 	"aliases.domainLabel": "మారుపేరు {n} డొమైన్",
 	"aliases.remove": "మారుపేరు {n} ను తీసివేయండి",
 	"aliases.add": "మారుపేరును జోడించండి",
-	"license.required": "{tier} లైసెన్స్ అవసరం",
 	"license.upgradeHint": "ఈ ఫీచర్‌ను ఉపయోగించడానికి మీ లైసెన్స్‌ను అప్‌గ్రేడ్ చేయండి.",
 	"license.view": "లైసెన్స్‌లను చూడండి",
 	"update.checkFailed": "నవీకరణలను తనిఖీ చేయలేకపోయాం",
@@ -1378,9 +1376,6 @@
 	"adminKeys.allowMcpHint": "ఈ కీని MCP క్లయింట్‌తో కింద ఎంచుకున్న అడ్మిన్ ప్రాంతాలను మాత్రమే నిర్వహించడానికి ఉపయోగించండి. ఇది మెయిల్‌ను చదవలేదు లేదా పంపలేదు.",
 	"adminKeys.createKey": "కీని సృష్టించండి",
 	"branding.title": "బ్రాండింగ్",
-	"branding.proOnly": "అనుకూల బ్రాండింగ్ Pro లేదా Team లైసెన్స్‌తో అందుబాటులో ఉంటుంది.",
-	"branding.licenseRequired": "లైసెన్స్ అవసరం",
-	"branding.originalNote": "ఈ ఇన్‌స్టాలేషన్ అసలు Cmail పేరు, యాప్ ఐకాన్ మరియు ఫెవికాన్‌ను ఉపయోగించడం కొనసాగిస్తుంది.",
 	"branding.buyPro": "Pro కొనండి · $29",
 	"branding.buyTeam": "Team కొనండి · $249 నుండి",
 	"branding.updated": "బ్రాండింగ్ నవీకరించబడింది",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

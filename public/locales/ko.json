@@ -331,7 +331,6 @@
 	"admin.nav.backups": "백업",
 	"admin.nav.product": "제품",
 	"admin.nav.branding": "브랜딩",
-	"admin.nav.licenses": "라이선스",
 	"settings.nav.menu": "설정 메뉴",
 	"settings.nav.settings": "설정",
 	"settings.nav.account": "계정",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "별칭 {n} 도메인",
 	"aliases.remove": "별칭 {n} 제거",
 	"aliases.add": "별칭 추가",
-	"license.required": "{tier} 라이선스 필요",
 	"license.upgradeHint": "이 기능을 사용하려면 라이선스를 업그레이드하세요.",
 	"license.view": "라이선스 보기",
 	"update.checkFailed": "업데이트를 확인할 수 없습니다",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "MCP 클라이언트에서 이 키를 사용해 아래에서 선택한 관리 영역만 관리합니다. 메일을 읽거나 보낼 수 없습니다.",
 	"adminKeys.createKey": "키 만들기",
 	"branding.title": "브랜딩",
-	"branding.proOnly": "사용자 지정 브랜딩은 Pro 또는 Team 라이선스에서 사용할 수 있습니다.",
-	"branding.licenseRequired": "라이선스 필요",
-	"branding.originalNote": "이 설치는 계속해서 기본 Cmail 이름, 앱 아이콘, 파비콘을 사용합니다.",
 	"branding.buyPro": "Pro 구매 · $29",
 	"branding.buyTeam": "Team 구매 · $249부터",
 	"branding.updated": "브랜딩이 업데이트되었습니다",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

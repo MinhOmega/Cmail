@@ -324,7 +324,6 @@
 	"admin.nav.backups": "Yedeklemeler",
 	"admin.nav.product": "Ürün",
 	"admin.nav.branding": "Marka",
-	"admin.nav.licenses": "Lisanslar",
 	"settings.nav.menu": "Ayarlar menüsü",
 	"settings.nav.settings": "Ayarlar",
 	"settings.nav.account": "Hesap",
@@ -925,7 +924,6 @@
 	"aliases.domainLabel": "Takma ad {n} alan adı",
 	"aliases.remove": "Takma ad {n} öğesini kaldır",
 	"aliases.add": "Takma ad ekle",
-	"license.required": "{tier} lisansı gerekli",
 	"license.upgradeHint": "Bu özelliği kullanmak için lisansınızı yükseltin.",
 	"license.view": "Lisansları görüntüle",
 	"update.checkFailed": "Güncellemeler kontrol edilemedi",
@@ -1364,9 +1362,6 @@
 	"adminKeys.allowMcpHint": "Bu anahtarı bir MCP istemcisiyle yalnızca aşağıda seçilen yönetim alanlarını yönetmek için kullanın. E-posta okuyamaz veya gönderemez.",
 	"adminKeys.createKey": "Anahtar oluştur",
 	"branding.title": "Marka",
-	"branding.proOnly": "Özel marka, Pro veya Team lisansıyla kullanılabilir.",
-	"branding.licenseRequired": "Lisans gerekli",
-	"branding.originalNote": "Bu kurulum özgün Cmail adını, uygulama simgesini ve favicon'unu kullanmaya devam eder.",
 	"branding.buyPro": "Pro satın al · $29",
 	"branding.buyTeam": "Team satın al · $249'dan başlayan fiyatlarla",
 	"branding.updated": "Marka güncellendi",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

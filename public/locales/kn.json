@@ -331,7 +331,6 @@
 	"admin.nav.backups": "ಬ್ಯಾಕಪ್‌ಗಳು",
 	"admin.nav.product": "ಉತ್ಪನ್ನ",
 	"admin.nav.branding": "ಬ್ರ್ಯಾಂಡಿಂಗ್",
-	"admin.nav.licenses": "ಪರವಾನಗಿಗಳು",
 	"settings.nav.menu": "ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನು",
 	"settings.nav.settings": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
 	"settings.nav.account": "ಖಾತೆ",
@@ -937,7 +936,6 @@
 	"aliases.domainLabel": "ಅಲಿಯಾಸ್ {n} ಡೊಮೇನ್",
 	"aliases.remove": "ಅಲಿಯಾಸ್ {n} ತೆಗೆಯಿರಿ",
 	"aliases.add": "ಅಲಿಯಾಸ್ ಸೇರಿಸಿ",
-	"license.required": "{tier} ಪರವಾನಗಿ ಅಗತ್ಯ",
 	"license.upgradeHint": "ಈ ವೈಶಿಷ್ಟ್ಯವನ್ನು ಬಳಸಲು ನಿಮ್ಮ ಪರವಾನಗಿಯನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ.",
 	"license.view": "ಪರವಾನಗಿಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
 	"update.checkFailed": "ನವೀಕರಣಗಳನ್ನು ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ",
@@ -1380,9 +1378,6 @@
 	"adminKeys.allowMcpHint": "ಕೆಳಗೆ ಆಯ್ಕೆ ಮಾಡಿದ ನಿರ್ವಾಹಕ ಪ್ರದೇಶಗಳನ್ನು ಮಾತ್ರ ನಿರ್ವಹಿಸಲು ಈ ಕೀಯನ್ನು MCP ಕ್ಲೈಂಟ್‌ನೊಂದಿಗೆ ಬಳಸಿ. ಇದು ಮೇಲ್ ಓದಲು ಅಥವಾ ಕಳುಹಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ.",
 	"adminKeys.createKey": "ಕೀ ರಚಿಸಿ",
 	"branding.title": "ಬ್ರ್ಯಾಂಡಿಂಗ್",
-	"branding.proOnly": "ಕಸ್ಟಮ್ ಬ್ರ್ಯಾಂಡಿಂಗ್ Pro ಅಥವಾ Team ಪರವಾನಗಿಯೊಂದಿಗೆ ಲಭ್ಯವಿದೆ.",
-	"branding.licenseRequired": "ಪರವಾನಗಿ ಅಗತ್ಯ",
-	"branding.originalNote": "ಈ ಅನುಸ್ಥಾಪನೆ ಮೂಲ Cmail ಹೆಸರು, ಆ್ಯಪ್ ಐಕಾನ್ ಮತ್ತು ಫೇವಿಕಾನ್ ಬಳಸುವುದನ್ನು ಮುಂದುವರಿಸುತ್ತದೆ.",
 	"branding.buyPro": "Pro ಖರೀದಿಸಿ · $29",
 	"branding.buyTeam": "Team ಖರೀದಿಸಿ · $249 ರಿಂದ",
 	"branding.updated": "ಬ್ರ್ಯಾಂಡಿಂಗ್ ನವೀಕರಿಸಲಾಗಿದೆ",
@@ -2003,5 +1998,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

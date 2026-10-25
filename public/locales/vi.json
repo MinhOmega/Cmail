@@ -327,7 +327,6 @@
 	"admin.nav.backups": "Sao lưu",
 	"admin.nav.product": "Sản phẩm",
 	"admin.nav.branding": "Thương hiệu",
-	"admin.nav.licenses": "Giấy phép",
 	"settings.nav.menu": "Menu cài đặt",
 	"settings.nav.settings": "Cài đặt",
 	"settings.nav.account": "Tài khoản",
@@ -931,7 +930,6 @@
 	"aliases.domainLabel": "Tên miền bí danh {n}",
 	"aliases.remove": "Gỡ bí danh {n}",
 	"aliases.add": "Thêm bí danh",
-	"license.required": "Cần giấy phép {tier}",
 	"license.upgradeHint": "Nâng cấp giấy phép của bạn để dùng tính năng này.",
 	"license.view": "Xem giấy phép",
 	"update.checkFailed": "Không thể kiểm tra bản cập nhật",
@@ -1370,9 +1368,6 @@
 	"adminKeys.allowMcpHint": "Dùng khóa này với một ứng dụng khách MCP để chỉ quản lý các khu vực quản trị được chọn bên dưới. Khóa này không thể đọc hay gửi thư.",
 	"adminKeys.createKey": "Tạo khóa",
 	"branding.title": "Thương hiệu",
-	"branding.proOnly": "Thương hiệu tùy chỉnh có sẵn với giấy phép Pro hoặc Team.",
-	"branding.licenseRequired": "Cần giấy phép",
-	"branding.originalNote": "Bản cài đặt này tiếp tục dùng tên, biểu tượng ứng dụng và favicon gốc của Cmail.",
 	"branding.buyPro": "Mua Pro · $29",
 	"branding.buyTeam": "Mua Team · từ $249",
 	"branding.updated": "Đã cập nhật thương hiệu",
@@ -1988,5 +1983,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }

@@ -335,7 +335,6 @@
 	"admin.nav.backups": "Sauvegardes",
 	"admin.nav.product": "Produit",
 	"admin.nav.branding": "Personnalisation",
-	"admin.nav.licenses": "Licences",
 	"settings.nav.menu": "Menu des paramètres",
 	"settings.nav.settings": "Paramètres",
 	"settings.nav.account": "Compte",
@@ -943,7 +942,6 @@
 	"aliases.domainLabel": "Domaine de l'alias {n}",
 	"aliases.remove": "Retirer l'alias {n}",
 	"aliases.add": "Ajouter un alias",
-	"license.required": "Licence {tier} requise",
 	"license.upgradeHint": "Passez à une licence supérieure pour utiliser cette fonctionnalité.",
 	"license.view": "Voir les licences",
 	"update.checkFailed": "Impossible de rechercher des mises à jour",
@@ -1390,9 +1388,6 @@
 	"adminKeys.allowMcpHint": "Utilisez cette clé avec un client MCP pour gérer uniquement les zones d'administration sélectionnées ci-dessous. Elle ne peut ni lire ni envoyer d'e-mails.",
 	"adminKeys.createKey": "Créer la clé",
 	"branding.title": "Personnalisation",
-	"branding.proOnly": "La personnalisation de la marque est disponible avec une licence Pro ou Team.",
-	"branding.licenseRequired": "Licence requise",
-	"branding.originalNote": "Cette installation continue d'utiliser le nom, l'icône d'application et le favicon d'origine de Cmail.",
 	"branding.buyPro": "Acheter Pro · 29 $",
 	"branding.buyTeam": "Acheter Team · à partir de 249 $",
 	"branding.updated": "Personnalisation mise à jour",
@@ -2018,5 +2013,7 @@
 	"compose.cancelTooLate": "Too late to cancel: the message is already being sent.",
 	"folders.allMailboxes": "All mailboxes",
 	"branding.accentColor": "Accent color",
-	"branding.accentReset": "Reset"
+	"branding.accentReset": "Reset",
+	"branding.disabled": "Branding is disabled on this instance",
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
 }
