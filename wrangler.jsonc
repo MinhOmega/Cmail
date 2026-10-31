@@ -147,6 +147,10 @@
 		{
 			"pattern": "mail.annamlabs.com",
 			"custom_domain": true
+		},
+		{
+			"pattern": "mail.lumorapic.com",
+			"custom_domain": true
 		}
 	]
 }
