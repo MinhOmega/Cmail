@@ -505,6 +505,13 @@
 			"when": 1792949919874,
 			"tag": "0078_recreate_license_settings",
 			"breakpoints": true
+		},
+		{
+			"idx": 72,
+			"version": "6",
+			"when": 1793465562043,
+			"tag": "0079_add_verification_code",
+			"breakpoints": true
 		}
 	]
 }

@@ -2182,5 +2182,6 @@
 	"branding.accentColor": "Accent color",
 	"branding.accentReset": "Reset",
 	"branding.disabled": "Branding is disabled on this instance",
-	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it."
+	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it.",
+	"messages.verificationCode": "Verification code"
 }

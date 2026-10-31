@@ -12,6 +12,7 @@ import { getMailboxAccessLevel } from "@/lib/mailboxes/access";
 import { listMessageAttachments, storeMessageAttachments } from "@/lib/email/attachments";
 import { inboundAttachmentLimitReason } from "@/lib/email/inbound-attachments";
 import { inboundMessageId } from "@/lib/email/inbound-id";
+import { extractVerificationCodeWithAI } from "@/lib/email/verification";
 import { getUnsubscribeUrlFromRawR2Key } from "@/lib/email/unsubscribe";
 import { resolveThreadId } from "@/lib/email/threading";
 import { normalizeMessageId } from "@/lib/email/thread-lookup";
@@ -181,6 +182,7 @@ export async function processInboundMessage(
 		threadId = normalizeMessageId(parsed.messageId) ?? newId("thr");
 	}
 
+	const verificationCode = await extractVerificationCodeWithAI(env, parsed.subject, parsed.text);
 	try {
 		const inserted = await db.insert(messages).values({
 			id: messageId,
@@ -194,6 +196,7 @@ export async function processInboundMessage(
 			ccAddr: parsed.ccAddr,
 			replyTo: parsed.replyTo,
 			subject: parsed.subject,
+			verificationCode,
 			snippet,
 			textBody: parsed.text,
 			htmlBody: parsed.html,

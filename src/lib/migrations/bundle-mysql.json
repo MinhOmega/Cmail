@@ -241,6 +241,14 @@
         "CREATE TRIGGER mailbox_aliases_jmap_au AFTER UPDATE ON mailbox_aliases FOR EACH ROW\nBEGIN\n\tINSERT INTO jmap_mailbox_revisions (mailbox_id, revision) VALUES (NEW.mailbox_id, 1) ON DUPLICATE KEY UPDATE revision = revision + 1;\n\tIF NOT (OLD.mailbox_id <=> NEW.mailbox_id) THEN\n\t\tINSERT INTO jmap_mailbox_revisions (mailbox_id, revision) VALUES (OLD.mailbox_id, 1) ON DUPLICATE KEY UPDATE revision = revision + 1;\n\tEND IF;\nEND;",
         "CREATE TRIGGER mailbox_aliases_jmap_ad AFTER DELETE ON mailbox_aliases FOR EACH ROW\nBEGIN\n\tINSERT INTO jmap_mailbox_revisions (mailbox_id, revision) VALUES (OLD.mailbox_id, 1) ON DUPLICATE KEY UPDATE revision = revision + 1;\nEND;"
       ]
+    },
+    {
+      "name": "0002_magical_garia.sql",
+      "statements": [
+        "ALTER TABLE `app_settings` MODIFY COLUMN `app_name` longtext NOT NULL DEFAULT ('Cmail');",
+        "ALTER TABLE `app_settings` ADD `accent_color` longtext;",
+        "ALTER TABLE `messages` ADD `verification_code` longtext;"
+      ]
     }
   ]
 }

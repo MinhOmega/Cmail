@@ -290,6 +290,7 @@ export const messages = sqliteTable(
 		replyTo: text("reply_to"),
 		subject: text("subject"),
 		snippet: text("snippet"),
+		verificationCode: text("verification_code"),
 		textBody: text("text_body"),
 		htmlBody: text("html_body"),
 		rawR2Key: text("raw_r2_key"),
