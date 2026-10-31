@@ -151,6 +151,18 @@
 		{
 			"pattern": "mail.lumorapic.com",
 			"custom_domain": true
+		},
+		{
+			"pattern": "mail.hoatet.store",
+			"custom_domain": true
+		},
+		{
+			"pattern": "mail.hoatuoidanangnhanhi.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "mail.minhvo.site",
+			"custom_domain": true
 		}
 	]
 }
