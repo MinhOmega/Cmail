@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Cloud, ExternalLink } from "lucide-react";
+import { Cloud, ExternalLink , KeyRound } from "lucide-react";
 import { useLanguage } from "@/components/language-provider";
 import { formatUserDate } from "@/lib/time/utils";
 import { MarkAsRead } from "@/components/mark-read";
@@ -200,6 +200,21 @@ export default function MessageDetailPage() {
       <h1 className={clsx(!isAnyPanelVisible ? "sm:pl-16" : "sm:pl-10", "px-4 pb-2 pt-2 text-2xl text-neutral-900 sm:pr-6")} title={message.subject ?? t("list.noSubject")}>
         {message.subject ?? t("list.noSubject")}
       </h1>
+      {message.verificationCode && (
+        <div className="px-4 pb-2 pt-1 sm:pl-10 sm:pr-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1 text-sm text-neutral-900">
+            <KeyRound className="h-4 w-4 text-neutral-500" />
+            <span className="font-mono">{message.verificationCode}</span>
+            <button
+              type="button"
+              onClick={() => void navigator.clipboard.writeText(message.verificationCode ?? "")}
+              className="text-xs text-neutral-500 hover:text-neutral-900"
+            >
+              {t("common.copy")}
+            </button>
+          </span>
+        </div>
+      )}
       {/* <div className="px-6">
         <div className="mx-auto w-full max-w-[640px]">
           <SpamScoreDetails
