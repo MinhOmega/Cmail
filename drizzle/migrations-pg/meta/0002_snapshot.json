@@ -1,5 +1,5 @@
 {
-  "id": "3789946f-1ee7-4b11-a32f-a2936508487e",
+  "id": "aebfcbb6-b164-4804-a479-adb33ca6accd",
   "prevId": "b48bf275-c424-4590-8daa-631fe092e5d6",
   "version": "7",
   "dialect": "postgresql",
@@ -983,13 +983,7 @@
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "default": "'Cmail'"
-        },
-        "accent_color": {
-          "name": "accent_color",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
+          "default": "'Mailflare'"
         },
         "outbound_attachment_max_mb": {
           "name": "outbound_attachment_max_mb",
@@ -1890,6 +1884,18 @@
           "type": "bigint",
           "primaryKey": false,
           "notNull": true
+        },
+        "reminder_minutes": {
+          "name": "reminder_minutes",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "last_reminded_start": {
+          "name": "last_reminded_start",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false
         },
         "created_at": {
           "name": "created_at",
@@ -4498,12 +4504,6 @@
         },
         "snippet": {
           "name": "snippet",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "verification_code": {
-          "name": "verification_code",
           "type": "text",
           "primaryKey": false,
           "notNull": false

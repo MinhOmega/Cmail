@@ -13,9 +13,10 @@ type Decision =
 	| { action: "forward"; forwardTo: string | null; forwardHeaders?: Record<string, string> }
 	| { action: "store"; forwardTo: string | null; forwardHeaders?: Record<string, string> };
 
-async function sign(secret: string, raw: ArrayBuffer, from: string, to: string): Promise<string> {
+/** HMAC-SHA256 over `v2\ntimestamp\nfrom\nto\nheaders\n` + raw body; matches src/lib/email/intake-signature.ts. */
+async function sign(secret: string, raw: ArrayBuffer, from: string, to: string, headers: string, timestamp: string): Promise<string> {
 	const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
-	const prefix = new TextEncoder().encode(`${from}\n${to}\n`);
+	const prefix = new TextEncoder().encode(`v2\n${timestamp}\n${from}\n${to}\n${headers}\n`);
 	const data = new Uint8Array(prefix.byteLength + raw.byteLength);
 	data.set(prefix, 0);
 	data.set(new Uint8Array(raw), prefix.byteLength);
@@ -29,7 +30,8 @@ export default {
 			return;
 		}
 		const raw = await new Response(message.raw).arrayBuffer();
-		const headers = Object.fromEntries(message.headers);
+		const headers = JSON.stringify(Object.fromEntries(message.headers));
+		const timestamp = String(Math.floor(Date.now() / 1000));
 		let decision: Decision;
 		try {
 			const response = await fetch(`${env.CMAIL_URL.replace(/\/$/, "")}/api/inbound`, {
@@ -38,8 +40,9 @@ export default {
 					"Content-Type": "message/rfc822",
 					"X-Cmail-From": message.from,
 					"X-Cmail-To": message.to,
-					"X-Cmail-Headers": JSON.stringify(headers),
-					"X-Cmail-Signature": await sign(env.INBOUND_WEBHOOK_SECRET, raw, message.from, message.to),
+					"X-Cmail-Headers": headers,
+					"X-Cmail-Timestamp": timestamp,
+					"X-Cmail-Signature": await sign(env.INBOUND_WEBHOOK_SECRET, raw, message.from, message.to, headers, timestamp),
 				},
 				body: raw,
 			});

@@ -19,8 +19,22 @@
     {
       "idx": 2,
       "version": "5",
+      "when": 1793174353930,
+      "tag": "0002_calendar_reminders",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1793260802000,
+      "tag": "0003_remote_content_ask",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
       "when": 1793465564601,
-      "tag": "0002_magical_garia",
+      "tag": "0004_magical_garia",
       "breakpoints": true
     }
   ]

@@ -73,7 +73,7 @@ await build({
 	tsconfig: join(root, "tsconfig.json"),
 	external: ["react", "react-dom", "react-dom/client", "jsdom"],
 	logLevel: "silent",
-	alias: { "@": join(root, "src") },
+	alias: { "@": join(root, "src"), "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 	banner: { js: 'import { createRequire } from "node:module"; const require = createRequire(import.meta.url);' },
 	loader: { ".js": "jsx" },
 	plugins: [{

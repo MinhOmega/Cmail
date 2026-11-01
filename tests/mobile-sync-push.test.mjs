@@ -19,7 +19,7 @@ async function bundle(entry, outfile) {
 		format: "esm",
 		target: "node22",
 		logLevel: "silent",
-		alias: { "@": join(root, "src") },
+		alias: { "@": join(root, "src"), "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 	});
 	return import(pathToFileURL(join(outDir, outfile)).href);
 }

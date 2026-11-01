@@ -32,6 +32,9 @@ export function useCompose() { return { showNotice() {}, openComposer() {} }; }
   ["@/lib/auth/client", `
 export function authFetch(...args) { return globalThis.__reviewTestFetch(...args); }
 `],
+  ["@/lib/messages/detail-cache", `
+export function clearMessageDetailCache() {}
+`],
   ["@/components/compose/utils", `
 export async function fetchDraft() { return globalThis.__reviewTestDraft(); }
 export function formatAttachmentSize(bytes) { return String(bytes); }
@@ -92,7 +95,7 @@ await build({
   jsx: "automatic",
   packages: "external",
   external: ["react", "react-dom", "react-dom/*", "lucide-react"],
-  alias: { "@": join(root, "src") },
+  alias: { "@": join(root, "src"), "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
   plugins: [{
     name: "review-network-and-presentation-stubs",
     setup(b) {

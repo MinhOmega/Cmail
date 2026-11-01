@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, ImagePlus, LockKeyhole, Palette } from "lucide-react";
+import { ArrowRight, ExternalLink, ImagePlus, LockKeyhole, Palette } from "@/components/icons";
 import { useLanguage } from "@/components/language-provider";
 import { useBranding } from "@/components/branding-provider";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,7 @@ export default function BrandingPage() {
 	const { t } = useLanguage();
 	const branding = useBranding();
 	const [appName, setAppName] = useState(branding.appName);
+	const [accentColor, setAccentColor] = useState(branding.accentColor ?? "#0b57d0");
 	const [icon, setIcon] = useState<File | null>(null);
 	const [preview, setPreview] = useState<string | null>(null);
 	const [status, setStatus] = useState<string | null>(null);
@@ -24,6 +25,10 @@ export default function BrandingPage() {
 	useEffect(() => {
 		setAppName(branding.appName);
 	}, [branding.appName]);
+
+	useEffect(() => {
+		setAccentColor(branding.accentColor ?? "#0b57d0");
+	}, [branding.accentColor]);
 
 	if (!branding.canCustomizeBranding) {
 		return (

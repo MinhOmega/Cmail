@@ -54,7 +54,7 @@ async function bundleI18n(outfile, extraLocale = false) {
 		format: "esm",
 		target: "node22",
 		logLevel: "silent",
-		alias: { "@": join(root, "src") },
+		alias: { "@": join(root, "src"), "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 		banner: { js: 'import { createRequire } from "node:module"; const require = createRequire(import.meta.url);' },
 		plugins: [{
 			name: "layout-runtime-stubs",

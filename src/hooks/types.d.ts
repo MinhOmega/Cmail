@@ -18,6 +18,7 @@ export type Message = {
 	bccAddr?: string | null;
 	/** Comma-separated Reply-To list; replies go here instead of `fromAddr` when set. */
 	replyTo?: string | null;
+	/** Resolved sender label: a manually named contact, otherwise this message's From name. */
 	fromContactName?: string | null;
 	fromContactHasAvatar?: boolean;
 	toContactName?: string | null;
@@ -33,6 +34,8 @@ export type Message = {
 	scheduledAt?: string | null;
 	/** Opens counted by the read-receipt pixel; absent when the message was sent without one. */
 	openCount?: number;
+	/** Verification code extracted from inbound mail (regex + AI fallback), shown as a copyable chip. */
+	verificationCode?: string | null;
 	threadId: string | null;
 	inReplyTo?: string | null;
 	references?: string | null;

@@ -25,7 +25,7 @@ await build({
 	platform: "browser",
 	format: "esm",
 	external: ["react", "react-dom", "react-dom/*"],
-	alias: { "@": join(root, "src") },
+	alias: { "@": join(root, "src"), "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 	logLevel: "silent",
 });
 

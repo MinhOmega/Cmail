@@ -1,7 +1,7 @@
 "use client";
-import { Bot, Mail, Globe2, Palette, Users, KeyRound } from "lucide-react";
 
 import Link from "next/link";
+import { Bot, Mail, Globe2, Palette, Users, KeyRound } from "@/components/icons";
 import { useLanguage } from "@/components/language-provider";
 import type { TranslationKey } from "@/lib/i18n/types";
 import { AdminUpdateCard } from "@/components/admin-update-card";

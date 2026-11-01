@@ -5,6 +5,8 @@ export default function manifest(): MetadataRoute.Manifest {
 		name: "Cmail",
 		short_name: "Cmail",
 		description: "Email, anywhere.",
+		id: "/",
+		scope: "/",
 		start_url: "/inbox",
 		display: "standalone",
 		background_color: "#ffffff",

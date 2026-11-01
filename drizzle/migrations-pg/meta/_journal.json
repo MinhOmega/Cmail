@@ -19,8 +19,22 @@
     {
       "idx": 2,
       "version": "7",
+      "when": 1793174352247,
+      "tag": "0002_calendar_reminders",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1793260801000,
+      "tag": "0003_remote_content_ask",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
       "when": 1793465563841,
-      "tag": "0002_funny_northstar",
+      "tag": "0004_funny_northstar",
       "breakpoints": true
     }
   ]

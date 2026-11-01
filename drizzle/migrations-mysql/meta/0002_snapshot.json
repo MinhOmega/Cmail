@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "0fe9e64f-5c82-4f0e-9c1a-8536b385c1a5",
+  "id": "362f2720-de98-432d-8477-05bc5320dd5e",
   "prevId": "b80e3d7b-c8bf-4112-902d-4e95811a12fb",
   "tables": {
     "agent_chat_messages": {
@@ -906,14 +906,7 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false,
-          "default": "('Cmail')"
-        },
-        "accent_color": {
-          "name": "accent_color",
-          "type": "longtext",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
+          "default": "('Mailflare')"
         },
         "outbound_attachment_max_mb": {
           "name": "outbound_attachment_max_mb",
@@ -1815,6 +1808,20 @@
           "type": "bigint",
           "primaryKey": false,
           "notNull": true,
+          "autoincrement": false
+        },
+        "reminder_minutes": {
+          "name": "reminder_minutes",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "last_reminded_start": {
+          "name": "last_reminded_start",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": false,
           "autoincrement": false
         },
         "created_at": {
@@ -4315,13 +4322,6 @@
         },
         "snippet": {
           "name": "snippet",
-          "type": "longtext",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "verification_code": {
-          "name": "verification_code",
           "type": "longtext",
           "primaryKey": false,
           "notNull": false,

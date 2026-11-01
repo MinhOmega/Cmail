@@ -23,7 +23,7 @@ await build({
 	platform: "node",
 	format: "esm",
 	target: "node22",
-	alias: { "@": join(root, "src") },
+	alias: { "@": join(root, "src"), "cloudflare:workers": "./server/runtime/cloudflare-workers.ts" },
 	packages: "external",
 	logLevel: "silent",
 });
