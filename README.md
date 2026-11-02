@@ -1,112 +1,61 @@
-<img src="public/icon-192.png" alt="Cmail" width="96" />
-
-
 # Cmail
 
-A self-hosted alternative to Google Workspace. Setup **custom domain Emails**, **Calendar, Drive, Booking** and **built-in AI agents**.
+<img src="public/icon-96.png" alt="Cmail" width="72">
 
-Run it on Cloudflare or Docker. Send and receive with Cloudflare, Resend or Amazon SES. Store files in R2, Backblaze B2 or AWS S3. Use D1, Postgres, MySQL or Turso for the database.
+**Cmail** is a self-hosted email inbox for custom domains, built on Cloudflare. Mailboxes, calendar, booking, Drive and AI agents in a single Worker. Send and receive with Cloudflare Email, **Resend**, or **AWS SES** — DNS stays on Cloudflare either way.
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/hieunc229/mailflare)
+[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/MinhOmega/Cmail)
 
-## Screenshots
+## What this fork adds
 
-<table>
-  <tr>
-    <td align="center"><img src="screenshots/1.png" alt="Inbox" width="320"><br>Inbox</td>
-    <td align="center"><img src="screenshots/2.png" alt="Manage domains" width="320"><br>Domains</td>
-    <td align="center"><img src="screenshots/3.png" alt="Manage inboxes" width="320"><br>Mailboxes</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="screenshots/4.png" alt="Calendar" width="320"><br>Calendar</td>
-    <td align="center"><img src="screenshots/5.png" alt="Booking" width="320"><br>Booking</td>
-    <td align="center"><img src="screenshots/6.png" alt="Drive" width="320"><br>Drive</td>
-  </tr>
-</table>
+This is the [MinhOmega/Cmail](https://github.com/MinhOmega/Cmail) fork of Mailflare. Beyond upstream, it ships:
 
-### Sponsors
+- **No license gates.** Upstream's Paymug licensing is gone. Capabilities are plain deployment vars: `ENABLE_BRANDING`, `ENABLE_MULTIUSER`, `ENABLE_SHARED_MAILBOXES`, `ENABLE_FORWARDING`.
+- **Verification code extraction.** Inbound mail is scanned for one-time codes (regex first, Workers AI fallback) and the reader shows a copyable code chip — handy for login OTPs.
+- **Unified all-mailboxes view.** One list across every mailbox, with live unread counts.
+- **Web Push, phone-first.** The whole Web Push chain (service worker, VAPID subscribe, notification deep-links, app badge) plus a one-tap enable prompt for installed PWAs. Set `VAPID_PUBLIC_KEY` / `VAPID_PRIVATE_KEY` / `VAPID_SUBJECT` and users get native alerts for new mail.
+- **Admin sending quota card.** Sent / failed / waiting counters from the outbound queue, plus live Cloudflare Email Routing status per sending domain, fetched from the Cloudflare API.
+- **Failed-send visibility.** Failed deliveries stay in Sent with a red chip and the provider's error; a five-minute cron fails stuck jobs and re-enqueues lost queue messages.
+- **Fork-first self-update.** The admin update card reads versions from `GITHUB_UPDATE_REPO` (this fork), not upstream — no accidental tree replacement. Set it up once with `scripts/set-update-secrets.sh`.
+- **Accent color branding** and multi-worker routes for several instances.
 
-<a target="_blank" href="https://sequenzy.com/?ref=hieunc229/mailflare"><img height="80" src="sponsors/sequenzy.png" alt="Sequenzy"></a>
-&nbsp;
-<a target="_blank" href="https://drivemug.com/?ref=hieunc229/mailflare"><img height="80" src="sponsors/drivemug.png" alt="Drivemug"></a>
+## Deploy
 
-Want to support Cmail? [Become a sponsor](https://store.paymug.co/buy/cmail-sponsor).
+1. **Deploy the app.** Click **Deploy to Cloudflare** above. Keep the app name `cmail`, or it will break.
+2. **Finish setup.** Open the app at `/setup` and create your admin account.
+3. **Connect a domain.** Add a domain from the same Cloudflare account, then create your first mailbox.
+
+> **`CF_TOKEN` is required.** Create a scoped [Cloudflare API token](https://github.com/MinhOmega/Cmail/issues/24#issuecomment-5523686105) with these permissions:
+>
+> - All accounts: Email Sending:Edit, DNS Settings:Edit, Email Routing Addresses:Edit
+> - All zones: DNS Settings:Edit, Email Routing Rules:Edit, Zone Settings:Edit, DNS:Edit
+
+More options: [deployment guide](docs/deployment.md), including Web Push secrets, the admin self-update secrets and AI-agent setup.
 
 ## Features
 
-### Apps
+- **Email**: custom domain mailboxes, personal or shared, with access you control. Routing rules store, forward, reject or sort incoming mail.
+- **Calendar**: repeating events with time zones and reminders; attendees get email invitations.
+- **Booking**: share a public link so anyone can book a free time on your calendar.
+- **Drive**: store and share files.
+- **AI agents**: search mail, draft replies and manage events. Connect other AI tools over MCP.
+- **Import**: bring in mail from IMAP, Gmail Takeout, `.eml` and `.mbox` files.
+- **34 languages**, including Tiếng Việt.
 
-- **Email**: Custom domain mailboxes, personal or shared, with access you control. Send and receive with Cloudflare Email, Resend or Amazon SES.
-- **Routing rules**: Store, forward, reject or sort incoming mail.
-- **Calendar**: Repeating events with time zones. Attendees get email invitations.
-- **Booking**: Share a public link so anyone can book a free time on your calendar.
-- **Drive**: Store and share files.
-- **AI agents**: Search mail, draft replies and manage events. Connect other AI tools over MCP.
+## Under the hood
 
-### Technical
-
-- **Databases**: Cloudflare D1 (default), PostgreSQL, MySQL, Turso / libSQL, or a local SQLite file. Set `DATABASE_URL` to switch. Works with Supabase, Neon, PlanetScale, TiDB and more. See [Databases](docs/databases.md).
+- **Databases**: Cloudflare D1 (default), PostgreSQL, MySQL, Turso / libSQL, or a local SQLite file. Set `DATABASE_URL` to switch. See [Databases](docs/databases.md).
 - **File storage**: Cloudflare R2, Backblaze B2 or AWS S3.
 - **Hosting**: Cloudflare Workers or a single Docker container.
-- **Admin**: Users, API keys, webhooks, audit logs and backups.
-- **Import**: Bring in mail from IMAP, Gmail Takeout, `.eml` and `.mbox` files.
-
-Cmail currently supports 34 languages, including English, Português (Brasil), Português (Portugal), Español, Français, Deutsch, Italiano, Nederlands, Polski, Українська, Русский, Türkçe, 中文（简体）, 日本語, 한국어, Bahasa Indonesia, Bahasa Melayu, Tiếng Việt, ไทย, हिन्दी, বাংলা, मराठी, తెలుగు, தமிழ், ગુજરાતી, ಕನ್ನಡ, മലയാളം, ਪੰਜਾਬੀ, සිංහල, Kiswahili, Hausa, plus العربية, اردو and فارسی (right-to-left).
+- **Search**: FTS5 index (SQLite) with LIKE fallbacks elsewhere; Gmail-style query operators.
+- **JMAP** and a scoped REST API for external clients.
 
 ## Cost
 
 You can receive and send mail for free.
 
 - **Receiving**: Cloudflare Email Routing is free.
-- **Sending**: Use the free tier of Resend (3,000 emails a month) or Amazon SES. Cloudflare's own sending needs the $5/month Paid Worker plan.
-
-New Amazon SES accounts start in a sandbox. Ask AWS for production access to lift it. Prices change, so check [Resend](https://resend.com/pricing), [Amazon SES](https://aws.amazon.com/ses/pricing/) and [Cloudflare](https://developers.cloudflare.com/workers/platform/pricing/).
-
-## Deploy
-
-1. **Deploy the app.** Click **Deploy to Cloudflare**. Keep the app name `cmail`, or it will break.
-2. **Finish setup.** Open the app at `/setup` and create your admin account.
-3. **Connect a domain.** Add a domain from the same Cloudflare account, then create your first mailbox.
-
-> **`CF_TOKEN` is required.** Create a scoped [Cloudflare API token](https://github.com/hieunc229/mailflare/issues/24#issuecomment-5523686105) with these permissions:
->
-> - All accounts: Email Sending:Edit, DNS Settings:Edit, Email Routing Addresses:Edit
-> - All zones: DNS Settings:Edit, Email Routing Rules:Edit, Zone Settings:Edit, DNS:Edit
-
-More options: [deployment guide](docs/deployment.md).
-
-### Deploy with an AI agent
-
-Paste this into an AI agent that has terminal access (Claude Code, Codex, Cursor and similar):
-
-```text
-Install Cmail for me from https://github.com/hieunc229/mailflare on my Cloudflare account.
-
-1. Read README.md, docs/deployment.md and wrangler.jsonc first.
-2. Ask me for my Cloudflare account ID and two API tokens, using a secret input:
-   a deploy token (for Wrangler) and a runtime token (the Worker secret CF_TOKEN).
-   Never print them, commit them, or pass them as command arguments.
-3. Keep the Worker name exactly "cmail". Create or reuse the D1 database
-   "cmail", the R2 bucket "cmail-raw", and the queues "cmail-inbound",
-   "cmail-outbound" and "cmail-agent".
-4. Install dependencies, run `npm run deploy`, and set CF_TOKEN as a Worker secret.
-   Do not run remote database migrations yourself. The /setup page does that.
-5. Give me the app URL and anything I still need to do. I will open /setup, create
-   the admin account and connect my domain.
-```
-
-Token permissions and more options: [deployment guide](docs/deployment.md#deploy-with-an-ai-coding-agent).
-
-### Self-host with Docker
-
-Runs as one container on any server, with SQLite and local files.
-
-```bash
-cp .env.docker.example .env.docker
-docker compose up -d --build
-```
-
-See [self-hosting](docs/self-hosting.md).
+- **Sending**: use the free tier of Resend (3,000 emails a month) or Amazon SES. Cloudflare's own sending needs the $5/month Paid Worker plan.
 
 ## Local development
 
@@ -117,13 +66,25 @@ npm run db:migrate:local
 npm run dev
 ```
 
-Add your Cloudflare credentials to `.dev.vars`, then open [localhost:3000](http://localhost:3000). Run `npm run db:seed` to load sample data.
+Add your Cloudflare credentials to `.dev.vars`, then open [localhost:3000](http://localhost:3000). `npm run db:seed` loads sample data.
 
-- `npm run build`: build the Worker
-- `npm run deploy`: build and deploy
-- `npm run lint`: lint and type check
+- `npm run build` — build the Worker
+- `npm run deploy` — build and deploy
+- `node --test tests/*.test.mjs` — test suite (no Workers bindings needed)
+- `npx tsc --noEmit` — real type checking (the build skips type errors)
 
-A schema change needs a migration for each database type. See [Databases](docs/databases.md#migrations).
+A schema change needs a migration for each database dialect — see [AGENTS.md](AGENTS.md).
+
+## Self-host with Docker
+
+Runs as one container on any server, with SQLite and local files.
+
+```bash
+cp .env.docker.example .env.docker
+docker compose up -d --build
+```
+
+See [self-hosting](docs/self-hosting.md).
 
 ## Documentation
 
@@ -132,9 +93,10 @@ A schema change needs a migration for each database type. See [Databases](docs/d
 - [Sending and receiving providers](docs/providers.md)
 - [API and integrations](docs/api.md)
 - [Email assistant and MCP](docs/email-assistant-and-mcp.md)
+- [Spam protection](docs/spam-protection.md)
 - [Adding a language](docs/localization.md)
 - [Troubleshooting](docs/troubleshooting.md)
 
-## License
+## Credits & license
 
-See [LICENSE](LICENSE).
+Based on [Mailflare](https://github.com/hieunc229/mailflare) by [@hieunc229](https://github.com/hieunc229) — thank you for the excellent foundation. This fork carries the project forward with its own customizations and is released under the same [AGPL-3.0 license](LICENSE).

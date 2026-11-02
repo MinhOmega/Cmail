@@ -182,7 +182,18 @@ This fork removed upstream's commercial licensing (Paymug activation). `getLicen
 
 ### Self-update
 
-The admin overview dispatches `deploy-update.yml` (constant in `src/app/api/admin/update/utils.ts`) in the installation repo, which merges the upstream default branch and pushes it. It does not migrate, build, or deploy; the connected Cloudflare Git integration deploys the push. The admin update card separately reports and applies pending D1 migrations through the Worker binding.
+The admin overview dispatches `deploy-update.yml` (constant in `src/app/api/admin/update/utils.ts`) in the installation repo, which syncs the configured source repository — `GITHUB_UPDATE_REPO`, this fork by default — into the installation branch and pushes it. It does not migrate, build, or deploy; the connected Cloudflare Git integration deploys the push. The admin update card separately reports and applies pending D1 migrations through the Worker binding.
+
+## Fork operations (MinhOmega/Cmail)
+
+This checkout is the MinhOmega/Cmail fork. Production runs on the Cloudflare Worker `cmail-app` behind several `mail.*` custom domains, and this machine's `wrangler` is OAuth-authenticated, so **verify and deploy yourself instead of asking the operator**:
+
+- `npx wrangler deployments list` — what is currently live.
+- `npx wrangler d1 migrations list DB --remote` — pending migrations (`database_id` is in `wrangler.jsonc`); apply the additive ones with `npx wrangler d1 migrations apply DB --remote` after a deploy.
+- `npx wrangler secret list` — configured Worker secrets (`CF_TOKEN`, `VAPID_*`, `GITHUB_UPDATE_TOKEN`, `GITHUB_UPDATE_REPO`).
+- `npm run deploy` — build + deploy. Gate it on the full test suite (`node --test tests/*.test.mjs`) and `npx tsc --noEmit` passing.
+- `gh` is authenticated as MinhOmega: create branches, PRs (`gh pr create -R MinhOmega/Cmail`) and merge them when the operator asks for the PR flow.
+- **Never dispatch `.github/workflows/deploy-update.yml`** — it replaces this fork's tree with the configured source repo's tree. Admin self-update is fork-first: `GITHUB_UPDATE_REPO` is both the dispatch target and the version source (`src/app/api/admin/update/utils.ts`). Secrets are set with `scripts/set-update-secrets.sh`.
 
 ## Conventions
 
