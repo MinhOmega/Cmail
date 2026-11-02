@@ -2215,5 +2215,21 @@
   "branding.accentReset": "Reset",
   "branding.disabled": "Branding is disabled on this instance",
   "branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it.",
-  "messages.verificationCode": "Verification code"
+  "messages.verificationCode": "Verification code",
+  "general.sendingQuota": "Hạn mức gửi thư",
+  "general.sentToday": "Đã gửi hôm nay",
+  "general.failedToday": "Thất bại hôm nay",
+  "general.queuedNow": "Đang chờ gửi",
+  "general.noSendingDomains": "Chưa có domain nào được cấu hình để gửi thư.",
+  "general.domainColumn": "Tên miền",
+  "general.providerColumn": "Nhà cung cấp gửi",
+  "general.cfRoutingColumn": "Cloudflare Email Routing",
+  "general.routingEnabled": "Đang bật",
+  "general.routingDisabled": "Đang tắt",
+  "general.cfNotConfigured": "Thêm CF_TOKEN vào deployment để đọc trạng thái trực tiếp từ Cloudflare API.",
+  "general.quotaNote": "Cloudflare không có API trả về hạn mức gửi còn lại trong ngày, nên các số liệu trên đếm từ hàng đợi gửi của bản cài đặt này; tài khoản Cloudflare mới bắt đầu với hạn mức gửi ngày bảo thủ và tăng dần.",
+  "send.failedChip": "Thất bại",
+  "send.failedTitle": "Gửi thư thất bại",
+  "send.failedBody": "Nhà cung cấp báo lỗi: {error}",
+  "send.failedBodyUnknown": "Không thể chuyển thư này. Kiểm tra cấu hình gửi của domain rồi thử lại từ thư mục Đã gửi."
 }

@@ -2215,5 +2215,21 @@
 	"branding.accentReset": "Reset",
 	"branding.disabled": "Branding is disabled on this instance",
 	"branding.disabledHint": "Set ENABLE_BRANDING=true in the Worker environment variables to enable it.",
-	"messages.verificationCode": "Verification code"
+	"messages.verificationCode": "Verification code",
+	"general.sendingQuota": "Sending quota",
+	"general.sentToday": "Sent today",
+	"general.failedToday": "Failed today",
+	"general.queuedNow": "Waiting to send",
+	"general.noSendingDomains": "No domain is set up for sending yet.",
+	"general.domainColumn": "Domain",
+	"general.providerColumn": "Sending provider",
+	"general.cfRoutingColumn": "Cloudflare Email Routing",
+	"general.routingEnabled": "Enabled",
+	"general.routingDisabled": "Disabled",
+	"general.cfNotConfigured": "Add CF_TOKEN to this deployment to read live status from the Cloudflare API.",
+	"general.quotaNote": "Cloudflare has no API for the remaining daily send quota, so the counters above come from this installation's outbound queue; Cloudflare starts new accounts on a conservative daily sending limit that rises over time.",
+	"send.failedChip": "Failed",
+	"send.failedTitle": "Delivery failed",
+	"send.failedBody": "The provider reported: {error}",
+	"send.failedBodyUnknown": "The message could not be delivered. Check the domain's sending setup, then try again from Sent."
 }

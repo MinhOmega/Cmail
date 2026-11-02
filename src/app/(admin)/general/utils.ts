@@ -1,5 +1,5 @@
 import { authFetch } from "@/lib/auth/client";
-import type { GeneralSettings } from "./types";
+import type { GeneralSettings, SendingQuotaReport } from "./types";
 
 export async function loadGeneralSettings(): Promise<GeneralSettings> {
 	const response = await authFetch("/api/admin/general", { cache: "no-store" });
@@ -17,4 +17,11 @@ export async function saveGeneralSettings(changes: Partial<GeneralSettings>): Pr
 	const data = (await response.json()) as GeneralSettings & { error?: string };
 	if (!response.ok) throw new Error(data.error ?? "Could not save general settings");
 	return data as GeneralSettings;
+}
+
+export async function loadSendingQuota(): Promise<SendingQuotaReport> {
+	const response = await authFetch("/api/admin/sending-quota", { cache: "no-store" });
+	const data = (await response.json()) as SendingQuotaReport & { error?: string };
+	if (!response.ok) throw new Error(data.error ?? "Could not load sending quota");
+	return data as SendingQuotaReport;
 }

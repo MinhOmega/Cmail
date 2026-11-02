@@ -170,6 +170,9 @@ function MessageListRow({
 							}`}
 					>
 						{message.subject ?? t("list.noSubject")}
+						{message.status === "failed" && (
+							<span className="ml-2 inline-block rounded-full bg-red-100 px-2 py-0.5 align-middle text-[11px] font-medium text-red-700">{t("send.failedChip")}</span>
+						)}
 					</span>
 					<span className="mt-0.5 block truncate text-xs leading-5 text-neutral-500">
 						{preview}
@@ -241,6 +244,9 @@ function MessageListRow({
 				>
 					<span className={unread ? "font-semibold text-neutral-900" : ""}>
 						{rowMessage.subject ?? t("list.noSubject")}
+						{rowMessage.status === "failed" && (
+							<span className="ml-2 inline-block rounded-full bg-red-100 px-2 py-0.5 align-middle text-[11px] font-medium text-red-700">{t("send.failedChip")}</span>
+						)}
 					</span>
 					<span className="text-neutral-500"> - {getMessagePreview(rowMessage, config.folder, t)}</span>
 				</Link>

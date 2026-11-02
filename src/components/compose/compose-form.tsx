@@ -832,8 +832,8 @@ export function ComposeForm({
 					)}
 				</div>
 				<div className={cn("flex min-h-0 flex-1 flex-col", minimized && "hidden")}>
-				<div className="border-b border-neutral-100 px-4 py-1 flex flex-row items-center">
-					<Label htmlFor={`${mode}-from`} className="text-sm text-neutral-500">{t("compose.from")}</Label>
+				<div className="border-b border-neutral-100 px-4 py-1 flex flex-row items-center gap-2">
+					<Label htmlFor={`${mode}-from`} className="shrink-0 text-sm text-neutral-500">{t("compose.from")}</Label>
 					<Select
 						id={`${mode}-from`}
 						value={selectedMailbox && selectedFrom ? `${selectedMailbox.id}|${selectedFrom}` : ""}
@@ -842,7 +842,7 @@ export function ComposeForm({
 						required
 						disabled={loadingDraft || senderOptions.length === 0}
 						className="h-8 px-0 py-1 text-sm shadow-none focus-visible:ring-0"
-						containerClassName="border-0 flex-1"
+						containerClassName="min-w-0 flex-1 border-0"
 					>
 						{senderOptions.length === 0 && <option value="">{t("compose.selectMailboxFirst")}</option>}
 						{senderOptions.map(({ mailbox, address }) => (

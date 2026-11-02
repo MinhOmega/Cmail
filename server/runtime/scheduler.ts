@@ -8,6 +8,7 @@ import { runFollowUpReminders } from "@/lib/follow-ups/service";
 import { runCalendarReminders } from "@/lib/calendar/reminders";
 import { sweepImportJobs } from "@/lib/import/jobs";
 import { sweepOrphanedRawMail } from "@/lib/email/raw-sweeper";
+import { sweepOutboundJobs } from "@/lib/email/send";
 
 /** Fire the daily 02:00 UTC backup and the recurring maintenance jobs, matching the cron triggers in wrangler.jsonc. */
 export function startScheduler(env: CloudflareEnv) {
@@ -16,6 +17,7 @@ export function startScheduler(env: CloudflareEnv) {
 		runAgentMaintenance(env).catch((error) => console.error("Agent maintenance failed", error));
 		runTrashRetention(env).catch((error) => console.error("Trash retention failed", error));
 		sweepImportJobs(env).catch((error) => console.error("Import job sweep failed", error));
+		sweepOutboundJobs(env).catch((error) => console.error("Outbound job sweep failed", error));
 		const now = new Date();
 		runFollowUpReminders(env, now).catch((error) => console.error("Follow-up reminders failed", error));
 		runCalendarReminders(env, now).catch((error) => console.error("Calendar reminders failed", error));

@@ -133,7 +133,7 @@ export default function MailboxesPage() {
 							{t("mailboxes.new")}
 						</Button>
 					</DialogTrigger>
-					<DialogContent>
+					<DialogContent className="max-h-[calc(100vh-4rem)] overflow-y-auto">
 						<DialogHeader>
 							<DialogTitle>{t("mailboxes.createTitle")}</DialogTitle>
 							<DialogDescription>{t("mailboxes.createDescription")}</DialogDescription>
@@ -146,7 +146,8 @@ export default function MailboxesPage() {
 										id="mailbox-type"
 										value={mailboxType}
 										onChange={(event) => setMailboxType(event.target.value as "personal" | "shared")}
-										className="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 text-sm shadow-sm shadow-neutral-200/50 focus-visible:border-blue-600 focus-visible:outline-none"
+										containerClassName="h-10 bg-white shadow-sm shadow-neutral-200/50"
+										className="px-3 text-sm"
 									>
 										<option value="personal">{t("mailboxes.personalInbox")}</option>
 										<option value="shared">{t("mailboxes.sharedInbox")}</option>
@@ -164,7 +165,8 @@ export default function MailboxesPage() {
 										setOwnerUserId(event.target.value);
 										if (owner) setDisplayName(owner.name);
 									}}
-									className="flex h-10 w-full rounded-md border border-neutral-200 bg-white px-3 text-sm shadow-sm shadow-neutral-200/50 focus-visible:border-blue-600 focus-visible:outline-none"
+									containerClassName="h-10 bg-white shadow-sm shadow-neutral-200/50"
+									className="px-3 text-sm"
 								>
 									{mailboxOwners.map((owner) => (
 										<option key={owner.id} value={owner.id}>
@@ -197,10 +199,11 @@ export default function MailboxesPage() {
 										placeholder={t("mailboxes.localPlaceholder")}
 										className="min-w-0 flex-1 rounded-none border-0 shadow-none focus-visible:border-0"
 									/>
-									<span className="flex items-center text-sm text-neutral-500">@</span>
+									<span className="flex shrink-0 items-center text-sm text-neutral-500">@</span>
 									<Select
 										aria-label={t("accounts.domain")}
-										className="min-w-0 max-w-[55%] bg-transparent px-3 text-sm text-neutral-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+										containerClassName="min-w-0 max-w-[55%] shrink-0 rounded-none border-0 px-0"
+										className="bg-transparent px-3 text-sm text-neutral-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 										value={domainId}
 										onChange={(event) => setDomainId(event.target.value)}
 									>
@@ -217,6 +220,7 @@ export default function MailboxesPage() {
 								<p role="alert" className="text-sm text-red-600">{(create.error as Error).message}</p>
 							)}
 							<Button
+								className="w-full"
 								onClick={() => create.mutate()}
 								disabled={(mailboxType === "personal" && !ownerUserId) || !displayName.trim() || !domainId || !localPart || create.isPending}
 							>

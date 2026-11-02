@@ -337,6 +337,12 @@ export default function MessageDetailPage() {
             </div>
           )}
           {scheduledAt && <div className="px-4 sm:px-0 sm:pl-10"><ScheduledSendBanner messageId={message.id} scheduledAt={scheduledAt} /></div>}
+          {message.status === "failed" && (
+            <div role="alert" className="mx-4 mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800 sm:mx-0 sm:ml-10 sm:mr-4">
+              <p className="font-medium">{t("send.failedTitle")}</p>
+              <p className="mt-1 text-red-700">{data?.sendError ? t("send.failedBody", { error: data.sendError }) : t("send.failedBodyUnknown")}</p>
+            </div>
+          )}
           <div className="prose max-w-none px-4 text-neutral-900 sm:px-0 sm:pl-16">
             {htmlBody ? (
               <EmailHtmlRenderer key={message.id} className="mx-auto" html={htmlBody} autoAllowRemote={remote.autoAllow} onAllowRemote={remote.allowSender} />

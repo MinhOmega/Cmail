@@ -1,4 +1,4 @@
-import { and, eq, isNotNull } from "drizzle-orm";
+import { and, eq, isNotNull, lt, lte } from "drizzle-orm";
 import { getDb } from "@/db";
 import { messages, outboundJobs } from "@/db/schema";
 import { newId } from "@/lib/ids";
@@ -411,4 +411,76 @@ export async function processOutboundQueue(
 	if (!claimed.length) return;
 	delivery.attachments = await loadMessageAttachmentContents(env, payload.messageId);
 	await deliverEmail(env, delivery);
+}
+
+/** A job claimed but never finished (worker died mid-delivery) fails after this long. */
+const STUCK_SENDING_AFTER_MS = 15 * 60 * 1000;
+/** A queued job overdue by this much lost its queue message (the queue has no DLQ). */
+const LOST_QUEUE_MESSAGE_AFTER_MS = 60 * 60 * 1000;
+
+/**
+ * Reconciles the outbound queue with `outbound_jobs`. The queue consumer claims
+ * a job before delivering and Cloudflare retries a throwing message up to three
+ * times, but a Worker killed between claim and delivery leaves the job in
+ * "sending" forever, and a lost queue message leaves it "queued" past its due
+ * time. The five-minute cron fails the first (so the sender can see and retry
+ * it) and re-enqueues the second; the conditional claim in
+ * `processOutboundQueue` keeps a recovered delivery from racing a cancel.
+ */
+export async function sweepOutboundJobs(env: CloudflareEnv): Promise<void> {
+	const db = getDb(env);
+	const now = new Date();
+	try {
+		const stuck = await db
+			.select({ id: outboundJobs.id, userId: outboundJobs.userId, messageId: outboundJobs.messageId })
+			.from(outboundJobs)
+			.where(and(eq(outboundJobs.status, "sending"), lt(outboundJobs.updatedAt, new Date(now.getTime() - STUCK_SENDING_AFTER_MS))));
+		for (const job of stuck) {
+			const error = "Send failed: the delivery worker stopped before the provider confirmed the message";
+			const claimed = await db
+				.update(outboundJobs)
+				.set({ status: "failed", error, updatedAt: now })
+				.where(and(eq(outboundJobs.id, job.id), eq(outboundJobs.status, "sending")))
+				.returning({ id: outboundJobs.id });
+			if (!claimed.length) continue;
+			if (job.messageId) {
+				await db
+					.update(messages)
+					.set({ status: "failed" })
+					.where(and(eq(messages.id, job.messageId), eq(messages.status, "queued")));
+				await dispatchWebhooks(env, job.userId, "message.failed", { messageId: job.messageId, error }).catch(() => undefined);
+			}
+		}
+		const overdue = await db
+			.select({ id: outboundJobs.id, messageId: outboundJobs.messageId, payload: outboundJobs.payload, scheduledAt: outboundJobs.scheduledAt })
+			.from(outboundJobs)
+			.where(
+				and(
+					eq(outboundJobs.status, "queued"),
+					isNotNull(outboundJobs.scheduledAt),
+					isNotNull(outboundJobs.messageId),
+					lte(outboundJobs.scheduledAt, new Date(now.getTime() - LOST_QUEUE_MESSAGE_AFTER_MS)),
+					lt(outboundJobs.updatedAt, new Date(now.getTime() - LOST_QUEUE_MESSAGE_AFTER_MS)),
+				),
+			);
+		for (const job of overdue) {
+			if (!job.messageId) continue;
+			// Nudge updatedAt first so a cron overlap cannot enqueue the job twice.
+			const claimed = await db
+				.update(outboundJobs)
+				.set({ updatedAt: now })
+				.where(and(eq(outboundJobs.id, job.id), eq(outboundJobs.status, "queued"), lt(outboundJobs.updatedAt, new Date(now.getTime() - LOST_QUEUE_MESSAGE_AFTER_MS))))
+				.returning({ id: outboundJobs.id });
+			if (!claimed.length) continue;
+			const scheduledAt = job.scheduledAt ? new Date(job.scheduledAt) : now;
+			await env.OUTBOUND_QUEUE.send({
+				kind: "email.scheduled",
+				jobId: job.id,
+				messageId: job.messageId,
+				scheduledAt: scheduledAt.toISOString(),
+			});
+		}
+	} catch (error) {
+		console.error("Outbound job sweep failed", error);
+	}
 }

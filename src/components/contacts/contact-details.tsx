@@ -98,7 +98,7 @@ export function ContactDetailsTrigger({
 				{shownName}
 			</button>
 			<Dialog open={open} onOpenChange={handleOpenChange}>
-				<DialogContent>
+				<DialogContent className="max-h-[calc(100vh-4rem)] overflow-y-auto">
 					<DialogHeader>
 						<DialogTitle>{t("contact.title")}</DialogTitle>
 						<DialogDescription>{t("contact.description")}</DialogDescription>

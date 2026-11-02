@@ -40,6 +40,7 @@ export function AppearanceSettings() {
 			<Select
 				value={preference}
 				aria-label={t("settings.theme.label")}
+				containerClassName="w-auto shrink-0 self-center"
 				className="py-1.5 text-sm text-neutral-900"
 				onChange={(event) => {
 					const next = event.target.value;

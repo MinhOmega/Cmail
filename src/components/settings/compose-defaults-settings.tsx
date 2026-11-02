@@ -70,6 +70,7 @@ export function ComposeDefaultsSettings() {
 					id="compose-undo-send"
 					value={String(preferences.undoSendSeconds)}
 					disabled={loading || saving}
+					containerClassName="w-auto shrink-0 self-center"
 					className="py-1.5 text-sm text-neutral-900"
 					onChange={(event) => {
 						const undoSendSeconds = parseUndoSendSeconds(event.target.value);

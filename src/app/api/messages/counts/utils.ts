@@ -8,6 +8,8 @@ export function getMessageFolder(row: MessageCountRow): CountableFolder {
 	if (row.status === "archived") return "archived";
 	if (row.direction === "inbound" && row.status === "received" && !row.folderId) return "inbox";
 	if (row.direction === "outbound" && row.status === "sent") return "sent";
+	// Failed deliveries count towards Sent so a broken send is not invisible.
+	if (row.direction === "outbound" && row.status === "failed") return "sent";
 	if (row.direction === "outbound" && row.status === "draft") return "drafts";
 	return null;
 }

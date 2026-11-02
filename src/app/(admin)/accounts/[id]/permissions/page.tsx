@@ -200,7 +200,7 @@ export default function AccountPermissionsPage() {
 			{message && <p role="status" className="text-sm text-neutral-500">{message}</p>}
 
 			<Dialog open={transferOpen} onOpenChange={setTransferOpen}>
-				<DialogContent className="w-[min(420px,calc(100vw-32px))]">
+				<DialogContent className="max-h-[calc(100vh-4rem)] w-[min(420px,calc(100vw-32px))] overflow-y-auto">
 					<DialogHeader>
 						<DialogTitle>{t("account.permissions.transferQuestion")}</DialogTitle>
 						<DialogDescription>

@@ -31,7 +31,7 @@ export function MessageSnoozeDialog({ messageId, open, onOpenChange }: MessageSn
 
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent>
+			<DialogContent className="max-h-[calc(100vh-4rem)] overflow-y-auto">
 				<DialogHeader>
 					<DialogTitle>{t("snooze.title")}</DialogTitle>
 					<DialogDescription>{t("snooze.description")}</DialogDescription>

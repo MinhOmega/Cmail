@@ -340,7 +340,14 @@ export async function getMessageWithBodyForUser(env: CloudflareEnv, user: Sessio
 	const contactNames = await getMessageContactNames(env, message.userId, message.fromAddr, message.toAddr);
 	const attachments = await listMessageAttachments(env, messageId);
 	const unsubscribeUrl = await getUnsubscribeUrlFromRawR2Key(env, message.rawR2Key);
-	return { message: { ...message, ...contactNames }, body: message, attachments, unsubscribeUrl };
+	// A failed outbound send stores the provider's rejection on its delivery job;
+	// surface it so the sender can tell an app failure from a recipient-side one.
+	let sendError: string | null = null;
+	if (message.status === "failed") {
+		const [job] = await db.select({ error: outboundJobs.error }).from(outboundJobs).where(eq(outboundJobs.messageId, messageId)).limit(1);
+		sendError = job?.error ?? null;
+	}
+	return { message: { ...message, ...contactNames }, body: message, attachments, unsubscribeUrl, sendError };
 }
 
 export async function getMessageMetadataForUser(env: CloudflareEnv, user: SessionUser, messageId: string) {

@@ -267,7 +267,7 @@ export function DashboardNav({ className }: { className?: string }) {
                   <Plus className="h-4 w-4" />
                 </button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="max-h-[calc(100vh-4rem)] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle>{t("navigation.createFolder")}</DialogTitle>
                   <DialogDescription>

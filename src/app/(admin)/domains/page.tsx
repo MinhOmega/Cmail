@@ -290,7 +290,7 @@ export default function DomainsPage() {
               {t("domains.new")}
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="max-h-[calc(100vh-4rem)] overflow-y-auto">
             <DialogHeader>
               <DialogTitle>{t("domains.addTitle")}</DialogTitle>
               <DialogDescription>

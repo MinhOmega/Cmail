@@ -67,7 +67,10 @@ export async function GET(request: Request) {
 	if (folderId) {
 		conditions.push(eq(messages.folderId, folderId));
 	}
-	if (status) {
+	if (status === "sent") {
+		// Failed deliveries stay beside their sent copies so the sender can see them.
+		conditions.push(inArray(messages.status, ["sent", "failed"]));
+	} else if (status) {
 		conditions.push(eq(messages.status, status));
 	}
 	// Composer templates are stored as messages but never listed.
