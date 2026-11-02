@@ -8,7 +8,7 @@ realtime WebSocket, backup schedule and an SMTP listener for inbound mail.
 ## Quick start
 
 ```bash
-git clone https://github.com/hieunc229/mailflare && cd cmail
+git clone https://github.com/MinhOmega/Cmail && cd Cmail
 cp .env.docker.example .env.docker      # edit: how to receive and send mail
 docker compose up -d --build
 ```

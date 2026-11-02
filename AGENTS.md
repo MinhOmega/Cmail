@@ -18,3 +18,7 @@ Raw SQL must also work on all three dialects; see "The database is D1 unless `DA
 - Whenever a migration creates, renames, or removes a persisted table, update the backup and restore table lists in the same change, even if the feature is unrelated to backups. Review `BACKUP_TABLES` and `INTERNAL_TABLES` in `src/lib/backups/export.ts`, `BACKUP_TABLE_GROUPS` in `src/lib/backups/table-groups.ts`, and `DatabaseBackupTable` in `src/lib/backups/types.d.ts`.
 - Put every backed-up table in exactly one group. Keep `BACKUP_TABLES` in foreign-key dependency order so restore inserts parents before children and deletes them in reverse order. Exclude a table only when its contents are derived or internally managed, and document why.
 - When adding a table, check backup and restore behavior both before and after its migration is applied. Keep older full backup documents restorable.
+
+## Fork deployment and Cloudflare ops
+
+This fork deploys to the `cmail-app` Worker and `wrangler` on this machine is authenticated: verify deployments, pending D1 migrations and Worker secrets with `npx wrangler deployments list`, `npx wrangler d1 migrations list DB --remote` and `npx wrangler secret list`, and ship with `npm run deploy` once tests and `npx tsc --noEmit` pass. Never dispatch `.github/workflows/deploy-update.yml` — it replaces this fork's tree with its source repository's. Details in the "Fork operations" section of CLAUDE.md.

@@ -1,0 +1,17 @@
+{
+	"permissions": {
+		"allow": [
+			"Bash(npm run:*)",
+			"Bash(npx wrangler:*)",
+			"Bash(npx tsc:*)",
+			"Bash(node --test:*)",
+			"Bash(node scripts:*)",
+			"Bash(python3:*)",
+			"Bash(git:*)",
+			"Bash(gh:*)",
+			"Bash(curl:*)",
+			"Bash(ls:*)",
+			"Bash(grep:*)"
+		]
+	}
+}
