@@ -2231,5 +2231,9 @@
   "send.failedChip": "Thất bại",
   "send.failedTitle": "Gửi thư thất bại",
   "send.failedBody": "Nhà cung cấp báo lỗi: {error}",
-  "send.failedBodyUnknown": "Không thể chuyển thư này. Kiểm tra cấu hình gửi của domain rồi thử lại từ thư mục Đã gửi."
+  "send.failedBodyUnknown": "Không thể chuyển thư này. Kiểm tra cấu hình gửi của domain rồi thử lại từ thư mục Đã gửi.",
+  "pwa.pushPromptTitle": "Bật thông báo email?",
+  "pwa.pushPromptBody": "Nhận thông báo ngay khi có thư mới, kể cả khi Cmail đang đóng.",
+  "pwa.pushPromptEnable": "Bật",
+  "pwa.pushPromptDismiss": "Để sau"
 }

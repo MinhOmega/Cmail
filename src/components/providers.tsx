@@ -6,6 +6,7 @@ import { clearMailboxClientState } from "@/components/mailbox-provider-utils";
 import { BrandingProvider } from "@/components/branding-provider";
 import type { Branding } from "@/lib/branding/types";
 import { NewMessagePopup } from "@/components/new-message-popup";
+import { PwaPushPrompt } from "@/components/pwa-push-prompt";
 import { PwaServiceWorker } from "@/components/pwa-service-worker";
 import { ThemeSync } from "@/components/theme-sync";
 import { useMessagePolling } from "@/hooks/use-message-polling";
@@ -54,6 +55,7 @@ export function Providers({ children, initialBranding }: { children: React.React
 			<BrandingProvider initialBranding={initialBranding}>
 				<PwaServiceWorker />
 				{children}
+				<PwaPushPrompt />
 				<ThemeSync />
 				<div role="status" aria-live="polite">
 					{realtime.notification && (

@@ -2246,5 +2246,9 @@
   "send.failedChip": "Failed",
   "send.failedTitle": "Delivery failed",
   "send.failedBody": "The provider reported: {error}",
-  "send.failedBodyUnknown": "The message could not be delivered. Check the domain's sending setup, then try again from Sent."
+  "send.failedBodyUnknown": "The message could not be delivered. Check the domain's sending setup, then try again from Sent.",
+  "pwa.pushPromptTitle": "Turn on email notifications?",
+  "pwa.pushPromptBody": "Get an alert the moment new mail arrives, even when Cmail is closed.",
+  "pwa.pushPromptEnable": "Turn on",
+  "pwa.pushPromptDismiss": "Not now"
 }
