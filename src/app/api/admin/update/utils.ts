@@ -17,7 +17,8 @@ import packageMetadata from "../../../../../package.json";
 const GITHUB_API_URL = "https://api.github.com";
 const GITHUB_API_VERSION = "2026-03-10";
 const UPDATE_WORKFLOW = "deploy-update.yml";
-const UPDATE_SOURCE_REPOSITORY = "hieunc229/mailflare";
+/** Fallback source repo; the configured GITHUB_UPDATE_REPO always wins. */
+const UPDATE_SOURCE_REPOSITORY = "MinhOmega/Cmail";
 
 export async function authorizeAdminRequest(request: Request) {
   const env = getEnv();
@@ -153,14 +154,13 @@ function isNewerVersion(
   return false;
 }
 
-async function getTargetVersion(): Promise<string> {
-  // const sourceConfig: UpdateDispatchConfig = {
-  //   repository: UPDATE_SOURCE_REPOSITORY,
-  //   token,
-  // };
-  // const ref = await getDispatchRef(sourceConfig);
+async function getTargetVersion(env: CloudflareEnv): Promise<string> {
+  // The configured installation repo is the update source: this fork carries
+  // its own customizations, so reading upstream's version would keep the admin
+  // update card prompted forever (and dispatching would replace the tree).
+  const source = env.GITHUB_UPDATE_REPO?.trim() || UPDATE_SOURCE_REPOSITORY;
   const { data, response } = await githubRequest<GitHubContentResponse>(
-    `/repos/${UPDATE_SOURCE_REPOSITORY}/contents/package.json`,
+    `/repos/${source}/contents/package.json`,
   );
 
   if (!response.ok || !data?.content || data.encoding !== "base64") {
@@ -200,14 +200,14 @@ export async function getUpdateStatus(
   }
 
   getDispatchConfig(env);
-  const targetVersion = await getTargetVersion();
+  const targetVersion = await getTargetVersion(env);
 
   return {
     available: isNewerVersion(targetVersion, currentVersion),
     configuration,
     configured,
     currentVersion,
-    repository: UPDATE_SOURCE_REPOSITORY,
+    repository: env.GITHUB_UPDATE_REPO?.trim() || UPDATE_SOURCE_REPOSITORY,
     targetVersion,
   };
 }
