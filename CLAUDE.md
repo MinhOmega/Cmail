@@ -170,15 +170,15 @@ Two independent auth surfaces:
 - **Session cookie** (`ep_session`) — `getCurrentUser` / `requireUser` in `src/lib/auth/cookies.ts`, backed by `src/lib/auth/session.ts`. Used by dashboard/admin API routes. `requireUser` *throws*, which Next surfaces as a 500; prefer `requireSessionUser` from `src/lib/api/auth.ts`, which returns a proper 401 response. Most older routes still use `requireUser` and 500 on unauthenticated requests.
 - **API key bearer token** — `authenticateApiKey` + `requireScope` in `src/lib/api/auth.ts`, used by the public `/api/v1/*` surface.
 
-Mailbox content authorization goes through `src/lib/mailboxes/access.ts` (`getMailboxAccessLevel`, `listAccessibleMailboxes`, `listAccessibleMailboxIds`), which accounts for ownership and the `mailbox_access` sharing table. Message queries scope by accessible mailbox IDs, not by `userId` — see `src/app/api/messages/route.ts` for the canonical pattern. Mailbox details, aliases and avatars use `getMailboxSettingsAccess` in `src/lib/mailboxes/settings-access.ts`: on an installation licensed for account management, the primary admin can configure other accounts' mailboxes, and admins with user-management permission can configure ordinary users' mailboxes. This does not grant access to their messages or sending identities. Primary mailbox names and avatars follow the mailbox owner's account identity.
+Mailbox content authorization goes through `src/lib/mailboxes/access.ts` (`getMailboxAccessLevel`, `listAccessibleMailboxes`, `listAccessibleMailboxIds`), which accounts for ownership and the `mailbox_access` sharing table. Message queries scope by accessible mailbox IDs, not by `userId` — see `src/app/api/messages/route.ts` for the canonical pattern. Mailbox details, aliases and avatars use `getMailboxSettingsAccess` in `src/lib/mailboxes/settings-access.ts`: when `ENABLE_MULTIUSER` is set, the primary admin can configure other accounts' mailboxes, and admins with user-management permission can configure ordinary users' mailboxes. This does not grant access to their messages or sending identities. Primary mailbox names and avatars follow the mailbox owner's account identity.
 
 ### Folders are mostly virtual
 
 `messages.status` is a free-text column driving the folder views: `received` (inbox), `sent`, `draft`, `spam`, `trash`, `archived`. Orthogonal to that are `starred`, `snoozedUntil`, and `folderId` (user-created folders in the `folders` table). A "folder" route under `src/app/(dashboard)/` is usually a status filter, not a table.
 
-### Licensing gates branding
+### Capabilities are gated by ENABLE_* vars, not licenses
 
-Pro/Team keys are validated against Paymug (`src/lib/licenses/`); only a one-way key hash is stored. Without an active license the app falls back to the default name, icon, and favicon, and custom branding is unavailable. `getLicenseEntitlements` is the gate.
+This fork removed upstream's commercial licensing (Paymug activation). `getLicenseEntitlements` (`src/lib/licenses/service.ts`) now reads fork-local deployment vars: `ENABLE_BRANDING`, `ENABLE_MULTIUSER` (account/mailbox management), `ENABLE_SHARED_MAILBOXES`, `ENABLE_FORWARDING`. Anything upstream gates behind a license is gated here behind those flags; the `license_settings` table is dead weight kept for schema compatibility.
 
 ### Self-update
 
